@@ -318,6 +318,15 @@ const cv = document.getElementById('cv');
 const ctx = cv.getContext('2d');
 let CW = 800, CH = 500, DPR = 1;
 let cam = { x: 0, y: 0, scale: 60 };
+/* 模型的 view 使用 cx/cy 命名，相机使用 x/y；此函数负责统一（缺一即 NaN 会导致画布空白） */
+function camFromView(v){
+  v = v || {};
+  return {
+    x: (v.cx !== undefined) ? v.cx : (v.x !== undefined ? v.x : 0),
+    y: (v.cy !== undefined) ? v.cy : (v.y !== undefined ? v.y : 0),
+    scale: v.scale || 60
+  };
+}
 
 function resizeCanvas() {
   const r = cv.parentElement.getBoundingClientRect();
@@ -2089,7 +2098,7 @@ function resetSim(keepView) {
   if (!S.trail) S.trail = [];
   S.msg = S.msg || '';
   if (MODEL.post) MODEL.post(S);
-  if (!keepView) { cam = Object.assign({}, MODEL.view || { cx: 0, cy: 0, scale: 60 }); }
+  if (!keepView) { cam = camFromView(MODEL.view); }
   acc = 0; running = false;
   syncHud(); renderTeach(); render();
 }
@@ -2154,7 +2163,7 @@ function render() {
   if (flags.grid) R.grid();
   if (MODEL && S) {
     if (flags.trail && S.trail && S.trail.length > 1) R.polyline(S.trail, p.trail, 2, true);
-    try { MODEL.draw(S, R); } catch (e) { /* 绘制异常不影响主循环 */ }
+    try { MODEL.draw(S, R); } catch (e) { console.error('DRAWERROR[' + (MODEL && MODEL.id) + '] ' + e.message + ' @ ' + (e.stack || '').split('\n')[1]); }
   }
 }
 
@@ -2268,7 +2277,7 @@ function updateData() {
   if (!MODEL || !S) return;
   const box = document.getElementById('data');
   let rows;
-  try { rows = MODEL.readout(S) || []; } catch (e) { rows = []; }
+  try { rows = MODEL.readout(S) || []; } catch (e) { rows = []; console.error('READERROR[' + (MODEL && MODEL.id) + '] ' + e.message); }
   if (box.children.length !== rows.length) { buildData(); return; }
   rows.forEach((r, i) => {
     const c = box.children[i];
@@ -2288,7 +2297,7 @@ function renderTeach() {
     const d = document.createElement('div'); d.className = 'fx';
     const m = document.createElement('div');
     try {
-      if (window.katex) katex.render(f.tex, m, { throwOnError: false, displayMode: true });
+      if (window.katex) katex.render(f.tex, m, { throwOnError: false, displayMode: true, strict: false });
       else m.textContent = f.tex;
     } catch (e) { m.textContent = f.tex; }
     d.appendChild(m);
@@ -2301,7 +2310,7 @@ function renderTeach() {
   const er = document.getElementById('tErr'); er.innerHTML = '';
   (t.err || []).forEach(e => { const li = document.createElement('li'); li.textContent = e; er.appendChild(li); });
   let ex = '';
-  try { ex = MODEL.example ? MODEL.example(S) : ''; } catch (e) { ex = ''; }
+  try { ex = MODEL.example ? MODEL.example(S) : ''; } catch (e) { ex = ''; console.error('EXERROR[' + (MODEL && MODEL.id) + '] ' + e.message); }
   document.getElementById('tEx').textContent = ex;
 }
 
@@ -2401,7 +2410,7 @@ function init() {
   // 缩放
   document.getElementById('zin').onclick = () => { cam.scale = clamp(cam.scale * 1.25, 6, 900); render(); };
   document.getElementById('zout').onclick = () => { cam.scale = clamp(cam.scale / 1.25, 6, 900); render(); };
-  document.getElementById('zreset').onclick = () => { cam = Object.assign({}, MODEL.view); render(); };
+  document.getElementById('zreset').onclick = () => { cam = camFromView(MODEL.view); render(); };
 
   // 移动端面板
   document.getElementById('toggleL').onclick = () => document.getElementById('leftPanel').classList.toggle('open');
