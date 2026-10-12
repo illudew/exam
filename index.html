@@ -6,8 +6,7 @@
 <title>高考物理模型模拟实验室</title>
 <meta name="description" content="高考物理常见模型的可视化模拟：力学、电磁学、电路、实验，实时参量与公式解析。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛️</text></svg>">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<!-- KaTeX 由脚本按多 CDN（jsDelivr / npmmirror / BootCDN / unpkg）容错加载；全部失败则公式以源码形式展示 -->
 <style>
 *,*::before,*::after{box-sizing:border-box}
 :root{
@@ -2300,6 +2299,31 @@ function renderTeach() {
   document.getElementById('tEx').textContent = ex;
 }
 
+/* KaTeX 多 CDN 容错加载：任一可达即可渲染公式；全部失败则退化为公式源码，页面其它功能不受影响 */
+function loadKaTeX(){
+  const bases = [
+    'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/',
+    'https://registry.npmmirror.com/katex/0.16.9/files/dist/',
+    'https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.9/',
+    'https://unpkg.com/katex@0.16.9/dist/'
+  ];
+  let i = 0;
+  (function next(){
+    if (i >= bases.length) return;
+    const base = bases[i++];
+    const s = document.createElement('script');
+    s.src = base + 'katex.min.js';
+    s.onload = function(){
+      const l = document.createElement('link');
+      l.rel = 'stylesheet'; l.href = base + 'katex.min.css';
+      document.head.appendChild(l);
+      if (MODEL) renderTeach();
+    };
+    s.onerror = next;
+    document.head.appendChild(s);
+  })();
+}
+
 /* ---------------- 播放控制 ---------------- */
 function setRunning(v) {
   if (v && S && S.done) return;
@@ -2420,6 +2444,9 @@ function init() {
   });
 
   requestAnimationFrame(frame);
+
+  // 公式渲染（多 CDN 容错，加载成功后自动重渲染）
+  loadKaTeX();
 }
 document.addEventListener('DOMContentLoaded', init);
 </script>
