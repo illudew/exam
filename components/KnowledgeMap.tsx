@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import * as d3 from "d3";
-import type { ExamType, KnowledgeEdge, KnowledgeNode } from "@/lib/types";
+import type { ExamType, KnowledgeNode } from "@/lib/types";
 import { getMapData } from "@/lib/data/models";
 import { useAppStore } from "@/lib/store";
 
@@ -29,27 +29,34 @@ export function KnowledgeMap({
   onNodeClick?: (node: KnowledgeNode) => void;
 }) {
   const svgRef = useRef<SVGSVGElement>(null);
-  const { modelMastery } = useAppStore();
   const containerRef = useRef<HTMLDivElement>(null);
+  // 保存 force simulation 和节点选择器引用，用于后续增量更新
+  const simRef = useRef<any>(null);
+  const nodeCircleRef = useRef<any>(null);
+  const nodePercentRef = useRef<any>(null);
 
+  // 只订阅 modelMastery，避免整个 store 引用变化
+  const modelMastery = useAppStore((s) => s.modelMastery);
+
+  // 包装 onNodeClick，避免内联函数引用变化触发重绘
+  const handleNodeClick = useCallback(
+    (node: KnowledgeNode) => onNodeClick?.(node),
+    [onNodeClick]
+  );
+
+  // ======== D3 图初始化：只在 exam 变化时完整重绘 ========
   useEffect(() => {
     const containerEl = containerRef.current;
     const svg = svgRef.current;
     if (!containerEl || !svg) return;
 
+    // 停止旧的 simulation
+    simRef.current?.stop();
+
     // 清理前一次渲染
     d3.select(svg).selectAll("*").remove();
 
     const { nodes, edges } = getMapData(exam);
-
-    // 同步模型 fullness
-    nodes.forEach((n) => {
-      if (n.type === "model") {
-        const mm = modelMastery[n.id] || modelMastery[n.id.replace("model_", "")];
-        if (mm) n.fullness = mm.masteryLevel;
-      }
-    });
-
     const width = containerEl.clientWidth;
     const height = Math.max(600, containerEl.clientHeight || 600);
 
@@ -79,6 +86,8 @@ export function KnowledgeMap({
       .force("charge", d3.forceManyBody().strength(-320))
       .force("center", d3.forceCenter(width / 2, height / 2))
       .force("collide", d3.forceCollide().radius(50));
+
+    simRef.current = simulation;
 
     // 绘制边
     const link = gContainer
@@ -111,7 +120,13 @@ export function KnowledgeMap({
         .attr("fill", color);
     });
 
-    link.attr("marker-end", (d: any) => `url(#arrow-${(d.type === "causes" ? "#f97316" : d.type === "contradicts" ? "#ef4444" : "#94a3b8").replace("#", "")})`);
+    link.attr(
+      "marker-end",
+      (d: any) =>
+        `url(#arrow-${(
+          d.type === "causes" ? "#f97316" : d.type === "contradicts" ? "#ef4444" : "#94a3b8"
+        ).replace("#", "")})`
+    );
 
     // 节点组
     const nodeG = gContainer
@@ -142,8 +157,9 @@ export function KnowledgeMap({
       );
 
     // 节点圆
-    nodeG
+    const nodeCircle = nodeG
       .append("circle")
+      .attr("class", "node-circle")
       .attr("r", (d: any) => (d.type === "model" ? 22 : d.type === "law" ? 18 : 14))
       .attr("fill", (d: any) =>
         d.type === "model" ? fullnessColor(d.fullness) : typeColors[d.type] || "#94a3b8"
@@ -158,8 +174,10 @@ export function KnowledgeMap({
         d3.select(this).attr("stroke", "#fff").attr("stroke-width", 2);
       })
       .on("click", (_e: any, d: any) => {
-        onNodeClick?.(d as KnowledgeNode);
+        handleNodeClick(d as KnowledgeNode);
       });
+
+    nodeCircleRef.current = nodeCircle;
 
     // 节点文字
     nodeG
@@ -172,9 +190,10 @@ export function KnowledgeMap({
       .text((d: any) => d.label);
 
     // 模型完整度百分比显示
-    nodeG
+    const nodePercent = nodeG
       .filter((d: any) => d.type === "model")
       .append("text")
+      .attr("class", "node-percent")
       .attr("text-anchor", "middle")
       .attr("dy", 5)
       .attr("font-size", 10)
@@ -182,11 +201,16 @@ export function KnowledgeMap({
       .attr("font-weight", "bold")
       .text((d: any) => `${d.fullness ?? 0}%`);
 
+    nodePercentRef.current = nodePercent;
+
     // 节点描述 tooltip
     const tooltip = d3
       .select("body")
       .append("div")
-      .attr("class", "fixed z-50 bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg shadow-lg p-3 text-xs max-w-xs pointer-events-none opacity-0 transition-opacity")
+      .attr(
+        "class",
+        "fixed z-50 bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg shadow-lg p-3 text-xs max-w-xs pointer-events-none opacity-0 transition-opacity"
+      )
       .style("font-size", "12px");
 
     nodeG
@@ -217,8 +241,31 @@ export function KnowledgeMap({
     return () => {
       simulation.stop();
       tooltip.remove();
+      nodeCircleRef.current = null;
+      nodePercentRef.current = null;
     };
-  }, [exam, modelMastery, onNodeClick]);
+  }, [exam, handleNodeClick]);
+
+  // ======== 增量更新：modelMastery 变化时只改颜色和百分比 ========
+  useEffect(() => {
+    const circles = nodeCircleRef.current;
+    const percents = nodePercentRef.current;
+    if (!circles || !percents) return;
+
+    circles
+      .filter((d: any) => d.type === "model")
+      .attr("fill", (d: any) => {
+        const mm = modelMastery[d.id] || modelMastery[d.id.replace("model_", "")];
+        const level = mm?.masteryLevel ?? d.fullness ?? 0;
+        return fullnessColor(level);
+      });
+
+    percents.text((d: any) => {
+      const mm = modelMastery[d.id] || modelMastery[d.id.replace("model_", "")];
+      const level = mm?.masteryLevel ?? d.fullness ?? 0;
+      return `${level}%`;
+    });
+  }, [modelMastery]);
 
   return (
     <div ref={containerRef} className="kmap-graph w-full h-full relative">

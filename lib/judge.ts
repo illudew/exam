@@ -2,64 +2,54 @@
 
 import nerdamer from "nerdamer";
 
-// 预处理表达式：去除 LaTeX 风格，转换为 nerdamer 能解析的格式
-function toNerdamerExpr(raw: string): string {
+// ======== LaTeX → nerdamer 统一转换器 ========
+// 将 LaTeX 数学表达式归一化为 nerdamer 可解析的形式
+function normalizeMathExpr(raw: string): string {
   let s = raw.trim();
-  // 处理等号：移项到左边
+  // 等号移到左边：a = b → a - b
   if (s.includes("=")) {
     const [lhs, rhs] = s.split("=").map((x) => x.trim());
     s = `(${lhs}) - (${rhs})`;
   }
-  // 常见物理量符号替换：theta -> theta, alpha -> alpha, omega -> omega, m1 -> m1 等保留
-  // \\sin(...) -> sin(...)（如果有 LaTeX 残留）
-  s = s.replace(/\\sin/g, "sin").replace(/\\cos/g, "cos").replace(/\\tan/g, "tan");
+  // LaTeX 命令 → nerdamer 函数/符号
+  s = s.replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, "($1)/($2)");
   s = s.replace(/\\sqrt/g, "sqrt");
-  // \frac{a}{b} -> (a)/(b)
-  s = s.replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, "($1)/($2)");
-  // 清理多余花括号
-  s = s.replace(/\{([^}]*)\}/g, "($1)");
-  return s;
-}
-
-// 尝试把 LaTeX 方程转成 nerdamer 可解析的表达式
-export function latexToNerdamer(latex: string): string {
-  // 基础的 LaTeX → 数学表达式转换
-  let s = latex.trim();
-  // 移到左边
-  if (s.includes("=")) {
-    const [lhs, rhs] = s.split("=").map((x) => x.trim());
-    s = `(${lhs}) - (${rhs})`;
-  }
-  s = s.replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, "($1)/($2)");
   s = s.replace(/\\sin/g, "sin").replace(/\\cos/g, "cos").replace(/\\tan/g, "tan");
-  s = s.replace(/\\sqrt/g, "sqrt").replace(/\\Delta/g, "");
-  s = s.replace(/\\cdot/g, "*").replace(/\\times/g, "*");
-  s = s.replace(/\\pi/g, "pi").replace(/\\theta/g, "theta").replace(/\\alpha/g, "alpha").replace(/\\omega/g, "omega");
-  s = s.replace(/\{([^}]*)\}/g, "($1)");
-  // 清理空格
+  s = s.replace(/\\Delta/g, "").replace(/\\cdot/g, "*").replace(/\\times/g, "*");
+  s = s.replace(/\\pi/g, "pi").replace(/\\theta/g, "theta")
+       .replace(/\\alpha/g, "alpha").replace(/\\omega/g, "omega");
+  // 清理多余花括号（保守替换）
+  s = s.replace(/\{([^{}]*)\}/g, "($1)");
+  // 空格清理
   s = s.replace(/\s+/g, "");
   return s;
 }
 
+// 统一导出（向后兼容别名）
+export const toNerdamerExpr = normalizeMathExpr;
+export const latexToNerdamer = normalizeMathExpr;
+
 // 判断两个方程是否代数等价（允许常数因子差异）
 export function equationsAlgebraicallyEquivalent(exprA: string, exprB: string): boolean {
   try {
-    const a = nerdamer(toNerdamerExpr(exprA));
-    const b = nerdamer(toNerdamerExpr(exprB));
+    const a = nerdamer(normalizeMathExpr(exprA));
+    const b = nerdamer(normalizeMathExpr(exprB));
     // 尝试化简 a/b，如果结果为常数（不含字母），则等价
     const ratio = (nerdamer(`(${a.text()}) / (${b.text()})`) as any).simplify() as any;
     const ratioText = ratio.text();
-    // 如果 ratio 中没有字母，就是纯数字，等价
     if (/^[0-9/.\-+\s*()]+$/.test(ratioText) || ratioText === "1") return true;
     // 或者直接 a-b 化简为零
     const diff = (nerdamer(`${a.text()} - (${b.text()})`) as any).simplify() as any;
     if (diff.text() === "0") return true;
     return false;
   } catch {
-    // 解析失败就用字符串归一化后比较
-    const na = (((nerdamer(toNerdamerExpr(exprA)) as any) as any).simplify() as any).text();
-    const nb = (((nerdamer(toNerdamerExpr(exprB)) as any) as any).simplify() as any).text();
-    return na === nb;
+    try {
+      const na = (nerdamer(normalizeMathExpr(exprA)) as any).simplify().text();
+      const nb = (nerdamer(normalizeMathExpr(exprB)) as any).simplify().text();
+      return na === nb;
+    } catch {
+      return false;
+    }
   }
 }
 
@@ -68,14 +58,13 @@ export function matchWithSymbolVariants(
   studentExpr: string,
   standardExprs: string[]
 ): { match: boolean; matchedExpr?: string } {
-  // 基础尝试
   for (const s of standardExprs) {
     if (equationsAlgebraicallyEquivalent(studentExpr, s))
       return { match: true, matchedExpr: s };
   }
   // 负号变体（整体取反）
   try {
-    const negStudent = (((nerdamer(toNerdamerExpr(studentExpr)) as any) as any).multiply("(-1)") as any).text();
+    const negStudent = (nerdamer(normalizeMathExpr(studentExpr)) as any).multiply("(-1)").text();
     for (const s of standardExprs) {
       if (equationsAlgebraicallyEquivalent(negStudent, s))
         return { match: true, matchedExpr: s };
@@ -84,10 +73,7 @@ export function matchWithSymbolVariants(
   return { match: false };
 }
 
-// ======== 二分图最大匹配（匈牙利算法，BFS 版本） ========
-// studentEquations: 学生方程列表
-// solutionEquations: 某个解法的标准方程列表
-// 返回: 最大匹配数
+// ======== 二分图最大匹配（Kuhn 增广路算法） ========
 
 export function bipartiteMaxMatch(
   studentEquations: string[],
@@ -96,27 +82,25 @@ export function bipartiteMaxMatch(
   const n = studentEquations.length;
   const m = solutionEquations.length;
 
-  // 学生方程 -> 标准方程 的邻接表（能等价匹配就连边）
+  // 学生方程 → 标准方程 的邻接表（能等价匹配就连边）
   const adj: number[][] = [];
   for (let i = 0; i < n; i++) {
     adj.push([]);
     for (let j = 0; j < m; j++) {
-      const { match } = matchWithSymbolVariants(studentEquations[i], [
-        solutionEquations[j],
-      ]);
+      const { match } = matchWithSymbolVariants(studentEquations[i], [solutionEquations[j]]);
       if (match) adj[i].push(j);
     }
   }
 
-  // BFS 增广路算法（Kuhn）
-  const matchToStudent = new Array(m).fill(-1); // 标准方程 j 匹配到哪个学生
-  const visited = new Array(n).fill(false);
+  // matchToStudent[j] = 标准方程 j 当前匹配到的学生方程 i，-1 表示未匹配
+  const matchToStudent = new Array(m).fill(-1);
 
-  function tryAugment(u: number): boolean {
+  // DFS 找增广路：从学生方程 u 出发，尝试给它找一个未占用的标准方程
+  function augment(u: number, visited: boolean[]): boolean {
     for (const v of adj[u]) {
       if (visited[v]) continue;
       visited[v] = true;
-      if (matchToStudent[v] === -1 || tryAugment(matchToStudent[v])) {
+      if (matchToStudent[v] === -1 || augment(matchToStudent[v], visited)) {
         matchToStudent[v] = u;
         return true;
       }
@@ -126,28 +110,11 @@ export function bipartiteMaxMatch(
 
   let size = 0;
   for (let i = 0; i < n; i++) {
-    // 重置 visited：对每个标准方程节点是否被访问过
-    const usedByJ = new Array(m).fill(false);
-    // 用一个新的 visited 标记标准方程
-    void visited;
-    // 重新实现：用 per-solution-visited
-    const stdVisited = new Array(m).fill(false);
-    function augment(u: number): boolean {
-      for (const v of adj[u]) {
-        if (stdVisited[v]) continue;
-        stdVisited[v] = true;
-        if (matchToStudent[v] === -1 || augment(matchToStudent[v])) {
-          matchToStudent[v] = u;
-          return true;
-        }
-      }
-      return false;
-    }
-    if (augment(i)) size++;
+    const visited = new Array(m).fill(false);
+    if (augment(i, visited)) size++;
   }
 
-
-  // studentToSolution[i] = 学生方程i匹配到的标准方程j，-1表示没匹配
+  // studentToSolution[i] = 学生方程 i 匹配到的标准方程 j
   const studentToSolution = new Array(n).fill(-1);
   for (let j = 0; j < m; j++) {
     if (matchToStudent[j] !== -1) {
@@ -174,8 +141,6 @@ export function judgeSolutionMatch(
     }
   }
 
-  // 判定：匹配数 == 学生方程数 且 匹配数 >= 解法所需最小独立方程数的比例
-  // 简单标准：所有学生方程都能匹配上
   const allMatched = best.perEquation.every((p) => p);
   return {
     passed: allMatched && studentExprs.length > 0,
@@ -208,5 +173,3 @@ export function generateEquationFeedback(
   }
   return `匹配度偏低（${correctCount}/${total}）。请回到因果链重新确认：你选对规律了吗？`;
 }
-
-export { toNerdamerExpr };

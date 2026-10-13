@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import type { Question, QuestionStep, GuideMode } from "@/lib/types";
 import { MathJax, MathText } from "./MathJax";
 import { HandwritingPad } from "./HandwritingPad";

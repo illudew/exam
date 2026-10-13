@@ -48,6 +48,9 @@ function defaultState(): PersistedState {
   };
 }
 
+// SSR 安全的 storage adapter
+const safeStorage = typeof window !== "undefined" ? localStorage : undefined;
+
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
@@ -169,6 +172,7 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: "illuphy-state",
+      storage: safeStorage as any,
       partialize: (state) => ({
         theme: state.theme,
         modelMastery: state.modelMastery,

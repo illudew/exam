@@ -1,22 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ExamType, Question } from "@/lib/types";
 import { CausalChainAnalysis } from "./CausalChainAnalysis";
 import { StepSolver } from "./StepSolver";
 import { useAppStore } from "@/lib/store";
-import Link from "next/link";
 
 export function SolveInner({ question, exam }: { question: Question; exam: ExamType }) {
   const [chainDone, setChainDone] = useState(false);
-  const [guideMode, setGuideMode] = useState(question ? useAppStore.getState().getGuideModeForModel(question.model) : "full");
-  const [showModePicker, setShowModePicker] = useState(false);
+  const [guideMode, setGuideMode] = useState(() => useAppStore.getState().getGuideModeForModel(question.model));
   const startSession = useAppStore((s) => s.startSession);
 
   // 初始化 session
-  useState(() => {
+  useEffect(() => {
     startSession(question.id);
-  });
+  }, [question.id, startSession]);
 
   function handleChainComplete(correct: boolean) {
     setChainDone(true);
