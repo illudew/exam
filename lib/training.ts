@@ -31,8 +31,7 @@ export function getDueReviewQuestions(exam: ExamType): (Question & { dueAt: numb
   const state = useAppStore.getState();
   const now = Date.now();
   return state.reviewQueue
-    .filter((r) => r.exam || true) // 暂时不限 exam
-    .filter((r) => r.dueAt <= now)
+        .filter((r) => r.dueAt <= now)
     .map((r) => {
       const q = ALL[exam].find((q) => q.id === r.questionId);
       return q ? { ...q, dueAt: r.dueAt } : null;

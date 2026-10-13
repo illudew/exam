@@ -18,20 +18,20 @@ export function MathJax({
     if (!ref.current) return;
 
     const render = async () => {
-      if (!window.MathJax) {
+      if (!(window as any).MathJax) {
         // 如果 MathJax 未加载，尝试 typeset 整个文档
         try {
-          window.MathJax = {
+          (window as any).MathJax = {
             tex: { inlineMath: [["$", "$"]], displayMath: [["$$", "$$"]] },
             svg: { fontCache: "global" },
-            startup: { pageReady: () => window.MathJax.typesetPromise() },
+            startup: { pageReady: () => (window as any).MathJax?.typesetPromise() },
           };
         } catch {}
       }
       // 已在 Layout 中全局加载 MathJax 脚本，直接 typeset Promise
       if (ref.current && (window as any).MathJax?.typesetPromise) {
         try {
-          await (window as any).MathJax.typesetPromise([ref.current]);
+          await (window as any).MathJax?.typesetPromise([ref.current]);
         } catch {}
       }
     };
@@ -55,7 +55,7 @@ export function MathText({ text, className = "" }: { text: string; className?: s
   useEffect(() => {
     if (!ref.current) return;
     if ((window as any).MathJax?.typesetPromise) {
-      (window as any).MathJax.typesetPromise([ref.current]).catch(() => {});
+      (window as any).MathJax?.typesetPromise([ref.current]).catch(() => {});
     }
   }, [text]);
 

@@ -3,6 +3,11 @@ import Link from "next/link";
 import { gaokaoQuestions } from "@/lib/data/gaokao-questions";
 import { SolveInner } from "@/components/SolveInner";
 
+
+export function generateStaticParams() {
+  return gaokaoQuestions.map(q => ({ id: q.id }));
+}
+
 export default function GaokaoSolvePage({ params }: { params: { id: string } }) {
   const question = gaokaoQuestions.find((q) => q.id === params.id);
   if (!question) notFound();

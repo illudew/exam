@@ -3,6 +3,11 @@ import Link from "next/link";
 import { zhongkaoQuestions } from "@/lib/data/zhongkao-questions";
 import { SolveInner } from "@/components/SolveInner";
 
+
+export function generateStaticParams() {
+  return zhongkaoQuestions.map(q => ({ id: q.id }));
+}
+
 export default function ZhongkaoSolvePage({ params }: { params: { id: string } }) {
   const question = zhongkaoQuestions.find((q) => q.id === params.id);
   if (!question) notFound();

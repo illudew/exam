@@ -47,18 +47,18 @@ export function equationsAlgebraicallyEquivalent(exprA: string, exprB: string): 
     const a = nerdamer(toNerdamerExpr(exprA));
     const b = nerdamer(toNerdamerExpr(exprB));
     // 尝试化简 a/b，如果结果为常数（不含字母），则等价
-    const ratio = nerdamer(`(${a.text()}) / (${b.text()})`).simplify();
+    const ratio = (nerdamer(`(${a.text()}) / (${b.text()})`) as any).simplify() as any;
     const ratioText = ratio.text();
     // 如果 ratio 中没有字母，就是纯数字，等价
     if (/^[0-9/.\-+\s*()]+$/.test(ratioText) || ratioText === "1") return true;
     // 或者直接 a-b 化简为零
-    const diff = nerdamer(`${a.text()} - (${b.text()})`).simplify();
+    const diff = (nerdamer(`${a.text()} - (${b.text()})`) as any).simplify() as any;
     if (diff.text() === "0") return true;
     return false;
   } catch {
     // 解析失败就用字符串归一化后比较
-    const na = nerdamer(toNerdamerExpr(exprA)).simplify().text();
-    const nb = nerdamer(toNerdamerExpr(exprB)).simplify().text();
+    const na = (((nerdamer(toNerdamerExpr(exprA)) as any) as any).simplify() as any).text();
+    const nb = (((nerdamer(toNerdamerExpr(exprB)) as any) as any).simplify() as any).text();
     return na === nb;
   }
 }
@@ -75,7 +75,7 @@ export function matchWithSymbolVariants(
   }
   // 负号变体（整体取反）
   try {
-    const negStudent = nerdamer(toNerdamerExpr(studentExpr)).multiply("(-1)").text();
+    const negStudent = (((nerdamer(toNerdamerExpr(studentExpr)) as any) as any).multiply("(-1)") as any).text();
     for (const s of standardExprs) {
       if (equationsAlgebraicallyEquivalent(negStudent, s))
         return { match: true, matchedExpr: s };
@@ -146,8 +146,6 @@ export function bipartiteMaxMatch(
     if (augment(i)) size++;
   }
 
-  void tryAugment; // 避免未使用警告
-  void usedByJ;
 
   // studentToSolution[i] = 学生方程i匹配到的标准方程j，-1表示没匹配
   const studentToSolution = new Array(n).fill(-1);

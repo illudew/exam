@@ -1,4 +1,4 @@
-import type { PhysicsModel, KnowledgeNode, KnowledgeEdge, Question } from "../types";
+import type { PhysicsModel, KnowledgeNode, KnowledgeEdge, Question, ExamType, NodeType } from "../types";
 
 // ============ 高考物理模型 ============
 export const gaokaoModels: PhysicsModel[] = [
