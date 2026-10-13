@@ -1,8 +1,4 @@
-node_modules/
-.next/
-out/
-.env*
-*.log
+# 系统文件
 .DS_Store
-next-env.d.ts
-tsbuildinfo
+*.log
+.env*
