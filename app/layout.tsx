@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AppThemeProvider } from "@/components/AppThemeProvider";
+import { MathJaxBootstrap } from "@/components/MathJaxBootstrap";
 
 export const metadata: Metadata = {
   title: "IlluPhy · 物理模型模拟实验室",
@@ -15,34 +16,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <head>
-        {/* MathJax 3 全局加载 - 使用稳定 CDN */}
-        <script>
-          {`
-            window.MathJax = {
-              tex: {
-                inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
-                displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']],
-                processEscapes: true,
-                processEnvironments: true,
-                strict: false,
-              },
-              svg: { fontCache: 'global' },
-              startup: {
-                ready: function() {
-                  MathJax.startup.defaultReady();
-                }
-              }
-            };
-          `}
-        </script>
-        <script
-          defer
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-          async
-        />
-      </head>
       <body>
+        <MathJaxBootstrap />
         <AppThemeProvider>{children}</AppThemeProvider>
       </body>
     </html>
