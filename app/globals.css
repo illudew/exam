@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #ffffff;
+  --text: #0f172a;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --accent-blue: #1d4ed8;
+  --accent-green: #22c55e;
+  --accent-orange: #f97316;
+}
+
+.dark {
+  --bg: #0f172a;
+  --text: #e2e8f0;
+  --card: #1e293b;
+  --border: #334155;
+  --accent-blue: #60a5fa;
+  --accent-green: #4ade80;
+  --accent-orange: #fb923c;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+@layer components {
+  .card {
+    @apply bg-white dark:bg-dark-card rounded-xl border border-gray-200 dark:border-dark-border shadow-sm p-5;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-primary-600 hover:bg-primary-700 text-white;
+  }
+  .btn-secondary {
+    @apply btn bg-gray-100 hover:bg-gray-200 dark:bg-dark-border dark:hover:bg-gray-700 text-gray-800 dark:text-dark-text;
+  }
+  .btn-success {
+    @apply btn bg-accent-green hover:bg-green-600 text-white;
+  }
+  .btn-danger {
+    @apply btn bg-accent-red hover:bg-red-600 text-white;
+  }
+  .input {
+    @apply w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-bg text-gray-900 dark:text-dark-text focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm;
+  }
+  .step-active {
+    @apply bg-primary-600 text-white;
+  }
+  .step-done {
+    @apply bg-accent-green text-white;
+  }
+  .step-error {
+    @apply bg-accent-red text-white;
+  }
+  .step-pending {
+    @apply bg-gray-200 dark:bg-dark-border text-gray-500 dark:text-dark-muted;
+  }
+}
+
+/* MathJax inline sizing */
+.MathJax {
+  font-size: 1em !important;
+}
+
+/* D3 force graph zoom/pan cursor */
+.kmap-graph {
+  cursor: grab;
+}
+.kmap-graph:active {
+  cursor: grabbing;
+}
+
+/* Handwriting canvas */
+.hw-canvas {
+  touch-action: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 23px,
+    #e2e8f0 23px,
+    #e2e8f0 24px
+  );
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
