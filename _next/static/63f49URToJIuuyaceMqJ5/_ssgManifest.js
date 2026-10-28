@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002Fgaokao\u002Fsolve\u002F[id]","\u002Fzhongkao\u002Fsolve\u002F[id]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

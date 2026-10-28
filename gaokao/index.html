@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>高考物理 · IlluPhy 物理题库</title>
 <style>
-:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
 .wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
@@ -37,54 +37,33 @@ ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;heigh
 .chcard .meta{font-size:12.5px;color:var(--muted)}
 table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
 th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
-th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+th{background:#f0f3fa;color:#333;font-weight:600;white-space:nowrap}
 tr:last-child td{border-bottom:none}
-code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
-.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
-.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
-.qcard .qt{font-weight:700;font-size:15.5px}
-.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
-.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
-.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
-.badge.type{background:#e8f7f1;color:var(--ok)}
-.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+code{background:#f0f3fa;border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
 .pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
 .pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
 .pager a:hover{border-color:var(--pri)}
 .pager a small{display:block;color:var(--muted);font-size:12px}
 .pager a.next{text-align:right}
-footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
-.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+.foot{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap">
   <div class="crumb"><a href="/exam/">首页</a> › 高考物理</div>
   <h1>高考物理</h1>
-  <div class="sub">考点题库 · 解题训练</div>
+  <div class="sub">18 章考点体系</div>
 </div></header>
 <div class="wrap">
-
-<div class="grid c3">
-  <a class="chcard" href="/exam/gaokao/bank/" style="border-color:var(--pri)">
-    <div class="no">推荐入口</div><div class="nm">考点题库 · 18 章体系</div>
-    <div class="meta">完整考点细分 → 40 个综合题型 → 按章节浏览题目</div>
-  </a>
-  <a class="chcard" href="/exam/zhongkao/">
-    <div class="no">其他学段</div><div class="nm">中考物理</div>
-    <div class="meta">中考解题训练入口</div>
-  </a>
+<div class="card" style="text-align:center;padding:48px 24px">
+  <div style="font-size:14px;color:var(--muted);margin-bottom:8px">高考物理 · IlluPhy</div>
+  <a href="/exam/gaokao/bank/" style="display:inline-block;background:var(--pri);color:#fff;text-decoration:none;border-radius:10px;padding:18px 48px;font-size:17px;font-weight:700;letter-spacing:1px">进入考点题库 →</a>
+  <div style="color:var(--muted);font-size:13px;margin-top:14px">18 章体系 · 纯大纲无内置题目</div>
 </div>
-<h2>解题训练（8 题）</h2><a class="qcard" href="/exam/gaokao/solve/gaokao_inclined_001/"><div><div class="qt">光滑斜面上的滑块<span class="badge type">C03</span></div><div class="qd">滑块从光滑斜面顶端由静止下滑，用机械能守恒与牛顿定律求到底端的速度。</div></div><div class="go">开始 →</div></a>
-<a class="qcard" href="/exam/gaokao/solve/gaokao_connected_001/"><div><div class="qt">定滑轮连接两物块<span class="badge type">C02</span></div><div class="qd">光滑水平面上两物块经定滑轮轻绳连接，求共同加速度与绳中拉力。</div></div><div class="go">开始 →</div></a>
-<a class="qcard" href="/exam/gaokao/solve/gaokao_belt_001/"><div><div class="qt">水平传送带<span class="badge type">C04</span></div><div class="qd">物块轻放于匀速传送带，求运动时间与系统产生的内能（摩擦生热）。</div></div><div class="go">开始 →</div></a>
-<a class="qcard" href="/exam/gaokao/solve/gaokao_circle_001/"><div><div class="qt">竖直圆周运动的临界<span class="badge type">C08</span></div><div class="qd">轻绳系小球在竖直平面内做圆周运动，求最高点临界速度及相关能量问题。</div></div><div class="go">开始 →</div></a>
-<a class="qcard" href="/exam/gaokao/solve/gaokao_gravity_001/"><div><div class="qt">同步卫星与黄金代换<span class="badge type">C09</span></div><div class="qd">用黄金代换 GM=gR² 求地球同步卫星的轨道半径。</div></div><div class="go">开始 →</div></a>
-<a class="qcard" href="/exam/gaokao/solve/gaokao_collision_001/"><div><div class="qt">完全弹性碰撞<span class="badge type">C12</span></div><div class="qd">光滑水平面上完全弹性正碰，联立动量守恒与机械能守恒求碰后速度。</div></div><div class="go">开始 →</div></a>
-<a class="qcard" href="/exam/gaokao/solve/gaokao_bfield_001/"><div><div class="qt">洛伦兹力圆周运动<span class="badge type">C20</span></div><div class="qd">正电荷垂直射入匀强磁场，求轨道半径、周期及偏转 90° 的运动时间。</div></div><div class="go">开始 →</div></a>
-<a class="qcard" href="/exam/gaokao/solve/gaokao_emind_001/"><div><div class="qt">导体棒切割<span class="badge type">C23</span></div><div class="qd">恒力拉动导体棒沿导轨切割磁感线，求稳定速度及稳定时的功率分配。</div></div><div class="go">开始 →</div></a>
-<div class="callout">题库按 18 章考点体系重建中：每道题将记录 <b>主章节、次级考点、题型编号（C01–C40）、层级、核心工具、难点类型、失分原因</b>。已有题目也可从对应章节页进入。</div>
-<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+<div class="callout warn" style="margin-top:14px;max-width:480px;margin-left:auto;margin-right:auto">
+  <b>说明</b> · 解题训练功能已全部移除。题库当前只按考点大纲展示，真题将在后续逐题录入并标注。
+</div>
+<div class="foot">IlluPhy · 物理考点题库 · 纯静态 HTML</div>
 </div>
 </body>
 </html>
