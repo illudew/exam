@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第11章 机械振动与机械波 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 11 章</div>
+  <h1>第 11 章 · 机械振动与机械波</h1>
+  <div class="sub">第三部分 · 机械振动、波、光与热学 · 共 9 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="card sec"><h3><span class="no">11.1</span>简谐运动</h3>
+<ul class="pts"><li>平衡位置与回复力。</li><li>简谐运动的基本特征。</li><li>位移、速度和加速度的方向关系。</li><li>回复力与位移之间的关系。</li><li>简谐运动的周期、频率与振幅。</li><li>振幅与能量。</li><li>机械振动与周期性运动的区别。</li><li>简谐运动条件的判断。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">11.2</span>弹簧振子</h3>
+<ul class="pts"><li>弹簧振子的平衡位置。</li><li>弹簧振子的周期。</li><li>质量变化对周期的影响。</li><li>弹簧劲度系数变化对周期的影响。</li><li>振幅变化对理想振子周期的影响。</li><li>振子经过平衡位置和端点时的状态。</li><li>弹簧振子与机械能守恒。</li><li>弹簧振子与碰撞、外力结合。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">11.3</span>单摆</h3>
+<ul class="pts"><li>单摆模型及适用条件。</li><li>摆长与周期的关系。</li><li>重力加速度与周期的关系。</li><li>小角度摆动的近似。</li><li>振幅变化对周期的影响。</li><li>单摆测量重力加速度。</li><li>单摆的能量变化。</li><li>单摆与圆周运动的区别。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">11.4</span>简谐运动的图像与能量</h3>
+<ul class="pts"><li>位移—时间图像。</li><li>速度—时间图像。</li><li>加速度—时间图像。</li><li>各物理量的周期关系。</li><li>平衡位置与端点的物理量比较。</li><li>动能与势能的周期性变化。</li><li>相位差。</li><li>根据图像判断振动方向。</li><li>根据位移、速度或加速度反求振动状态。</li><li>多个振动过程的比较。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">11.5</span>受迫振动与共振</h3>
+<ul class="pts"><li>自由振动。</li><li>受迫振动。</li><li>阻尼振动。</li><li>共振现象。</li><li>驱动力频率与固有频率的关系。</li><li>振幅与驱动频率的关系。</li><li>共振的工程应用。</li><li>振幅变化与能量输入的定性判断。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">11.6</span>机械波的形成与传播</h3>
+<ul class="pts"><li>机械波产生的条件。</li><li>波源、介质与波的传播。</li><li>横波与纵波。</li><li>波长、频率、周期与波速。</li><li>波速与介质的关系。</li><li>波的传播方向与质点振动方向。</li><li>波传播过程中介质质点的运动。</li><li>波传播与能量传递。</li><li>机械波与振动的区别。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">11.7</span>波的图像与波动关系</h3>
+<ul class="pts"><li>波形图。</li><li>振动图像。</li><li>根据波形判断质点振动方向。</li><li>根据波速与波长求周期。</li><li>波形随时间的变化。</li><li>波形随传播距离的平移。</li><li>多个时刻的波形关系。</li><li>双向传播或传播方向不确定时的分析。</li><li>质点运动与波传播的不同。</li><li>从振动图像和波形图相互求解。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">11.8</span>波的叠加与干涉</h3>
+<ul class="pts"><li>波的独立传播。</li><li>波的叠加原理。</li><li>相干波源。</li><li>加强与减弱条件。</li><li>波程差与相位差。</li><li>波的干涉图样。</li><li>稳定干涉形成条件。</li><li>两个波源发出的波的叠加。</li><li>某一点振动加强或减弱的判断。</li><li>多个波源的叠加与对称性分析。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">11.9</span>驻波与多普勒效应</h3>
+<ul class="pts"><li>驻波的形成。</li><li>波节与波腹。</li><li>驻波中不同质点的振动特点。</li><li>相邻波节或波腹的距离。</li><li>驻波与行波的区别。</li><li>多普勒效应的基本含义。</li><li>波源与观察者相对运动引起的频率变化。</li><li>多普勒效应在声学和测量中的应用。</li></ul>
+</div>
+<h2>本章题目（0）</h2><div class="empty">本章题目整理中 —— 考点框架已就绪，题目将按上方小节逐条编码录入。</div>
+<div class="pager"><a href="ch10.html"><small>← 上一章</small>第 10 章 交变电流与电磁振荡</a><a class="next" href="ch12.html"><small>下一章 →</small>第 12 章 光学</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

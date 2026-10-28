@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第8章 恒定电流与电路 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 8 章</div>
+  <h1>第 8 章 · 恒定电流与电路</h1>
+  <div class="sub">第二部分 · 电学与电磁学 · 共 7 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="card sec"><h3><span class="no">8.1</span>电流与电阻</h3>
+<ul class="pts"><li>电流的定义与方向。</li><li>电流的微观解释。</li><li>电压与电势差。</li><li>电阻与电阻定律。</li><li>电阻率与导体材料。</li><li>导体长度、横截面积与电阻的关系。</li><li>欧姆定律。</li><li>线性元件与非线性元件。</li><li>I-U 图像与电阻变化。</li><li>温度变化对电阻的影响。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">8.2</span>串并联电路</h3>
+<ul class="pts"><li>串联电路的电流与电压关系。</li><li>并联电路的电流与电压关系。</li><li>总电阻的计算。</li><li>电阻混联。</li><li>电路等效变换。</li><li>电流、电压与电阻的分配。</li><li>电表接入后电路的变化。</li><li>含多个支路的电路分析。</li><li>电阻变化引起的全电路变化。</li><li>电容器与直流电路组合的基础问题。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">8.3</span>电功、电功率与焦耳热</h3>
+<ul class="pts"><li>电功的计算。</li><li>电功率的计算。</li><li>焦耳定律。</li><li>纯电阻电路中的电功与焦耳热。</li><li>非纯电阻电路的能量分配。</li><li>用电器额定值与实际值。</li><li>电灯、电热器、电动机等元件的区别。</li><li>电器效率。</li><li>多电阻串并联时的功率比较。</li><li>电路参数变化后的功率变化。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">8.4</span>电源与闭合电路欧姆定律</h3>
+<ul class="pts"><li>电源电动势。</li><li>电源内阻。</li><li>外电路电阻与总电阻。</li><li>闭合电路欧姆定律。</li><li>路端电压。</li><li>电源内电压与外电压。</li><li>外电阻变化引起电流变化。</li><li>电源短路与断路。</li><li>电源输出功率。</li><li>电源效率。</li><li>输出功率的极值问题。</li><li>电源与用电器匹配。</li><li>多电源、多电阻电路的等效分析。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">8.5</span>动态电路</h3>
+<ul class="pts"><li>滑动变阻器改变电路参数。</li><li>串联电阻变化对电流、电压的影响。</li><li>并联支路电阻变化。</li><li>电表读数变化。</li><li>电源内阻对路端电压的影响。</li><li>电压表并联、电流表串联的等效影响。</li><li>多个物理量同时变化时的定性分析。</li><li>极值、临界值与电路状态判断。</li><li>通过比例关系简化动态分析。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">8.6</span>电表与电路测量</h3>
+<ul class="pts"><li>电流表、电压表的原理。</li><li>电表量程与内阻。</li><li>电流表改装。</li><li>电压表改装。</li><li>电表的校准。</li><li>多用电表的使用。</li><li>电阻测量。</li><li>电路故障判断。</li><li>短路、断路及接触不良的分析。</li><li>根据电表示数判断电路状态。</li><li>电表内阻对测量结果的影响。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">8.7</span>非线性元件与传感器</h3>
+<ul class="pts"><li>小灯泡伏安特性曲线。</li><li>二极管的单向导电特性。</li><li>热敏电阻。</li><li>光敏电阻。</li><li>压敏电阻及其他常见敏感元件的定性认识。</li><li>传感器将非电学量转换为电学量的基本原理。</li><li>传感器与电路控制。</li><li>由图像求工作点。</li><li>非线性元件的动态电路分析。</li></ul>
+</div>
+<h2>本章题目（0）</h2><div class="empty">本章题目整理中 —— 考点框架已就绪，题目将按上方小节逐条编码录入。</div>
+<div class="pager"><a href="ch07.html"><small>← 上一章</small>第 7 章 电场与磁场</a><a class="next" href="ch09.html"><small>下一章 →</small>第 9 章 电磁感应</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第15章 力学实验 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 15 章</div>
+  <h1>第 15 章 · 力学实验</h1>
+  <div class="sub">第四部分 · 实验与实验设计 · 共 11 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="callout">力学实验不只考察实验步骤，还可能考察原理选择、器材使用、数据处理、误差分析、图像建立以及实验方案改进。课程标准明确列出多项学生必做实验，包括研究直线运动、弹簧弹力、力的合成、牛顿第二定律、平抛运动、机械能守恒、向心力和动量守恒等。</div>
+<div class="card sec"><h3><span class="no">15.1</span>测量工具与基本操作</h3>
+<ul class="pts"><li>刻度尺的使用。</li><li>游标卡尺的读数。</li><li>螺旋测微器的读数。</li><li>秒表与计时装置。</li><li>天平与质量测量。</li><li>多次测量求平均值。</li><li>估读规则与有效数字。</li><li>绝对误差与相对误差的基本理解。</li><li>系统误差与偶然误差。</li><li>仪器零点误差。</li><li>实验数据的记录规范。</li><li>单位换算与数量级检查。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">15.2</span>研究匀变速直线运动</h3>
+<ul class="pts"><li>打点计时器或其他计时装置的使用。</li><li>根据纸带测量位移。</li><li>根据相邻计时点计算速度。</li><li>用平均速度近似表示中间时刻的瞬时速度。</li><li>由连续相等时间的位移计算加速度。</li><li>由 v-t 图像求加速度。</li><li>根据实验数据验证匀变速运动规律。</li><li>判断实验中是否存在明显系统误差。</li><li>研究速度、位移随时间变化的规律。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">15.3</span>探究弹簧弹力与形变量的关系</h3>
+<ul class="pts"><li>测量弹簧原长与伸长量。</li><li>测量不同外力对应的弹簧形变量。</li><li>记录弹力与形变量。</li><li>绘制弹力—形变量图像。</li><li>求弹簧的劲度系数。</li><li>判断实验数据是否满足线性关系。</li><li>探究弹簧的弹性限度。</li><li>讨论弹簧自身质量、读数和测量方法带来的误差。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">15.4</span>探究两个互成角度的力的合成规律</h3>
+<ul class="pts"><li>记录分力的大小和方向。</li><li>使用弹簧测力计测力。</li><li>记录橡皮条结点的位置。</li><li>画出分力与合力的矢量图。</li><li>验证力的平行四边形定则。</li><li>判断力的大小、方向误差。</li><li>讨论结点位置是否一致。</li><li>对比理论合力与实验合力。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">15.5</span>探究加速度与力、质量的关系</h3>
+<ul class="pts"><li>控制质量研究加速度与合外力的关系。</li><li>控制合外力研究加速度与质量的关系。</li><li>控制变量法。</li><li>研究对象及系统边界的确定。</li><li>平衡摩擦力的基本思路。</li><li>绘制 a-F 图像。</li><li>绘制 a-1/m 图像。</li><li>通过图像判断比例关系。</li><li>分析实验中的阻力、滑轮及测量误差。</li><li>根据数据验证牛顿第二定律。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">15.6</span>探究平抛运动的特点</h3>
+<ul class="pts"><li>判断平抛运动的初速度方向。</li><li>研究水平方向是否为匀速运动。</li><li>研究竖直方向是否为自由落体运动。</li><li>用描点法描绘轨迹。</li><li>测量运动时间、水平位移与竖直位移。</li><li>根据轨迹反求初速度。</li><li>判断实验装置的水平与竖直基准。</li><li>分析初速度、释放方式和测量误差的影响。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">15.7</span>验证机械能守恒定律</h3>
+<ul class="pts"><li>选择验证对象与运动过程。</li><li>计算重力势能变化。</li><li>计算动能变化。</li><li>由纸带求速度。</li><li>通过自由落体或其他实验装置测量运动状态。</li><li>比较动能变化与重力势能变化。</li><li>判断是否需要考虑阻力。</li><li>分析实验中的系统误差。</li><li>通过图像检验机械能变化关系。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">15.8</span>探究向心力大小与相关因素的关系</h3>
+<ul class="pts"><li>研究向心力与质量的关系。</li><li>研究向心力与半径的关系。</li><li>研究向心力与角速度的关系。</li><li>控制变量法。</li><li>测量角速度、周期或转速。</li><li>比较实验向心力与理论值。</li><li>判断实验装置中的摩擦、测量和旋转误差。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">15.9</span>验证动量守恒定律</h3>
+<ul class="pts"><li>选择碰撞系统。</li><li>测量碰撞前后物体质量。</li><li>测量碰撞前后的速度。</li><li>使用滑轨、气垫导轨或其他碰撞装置。</li><li>利用位移和时间换算速度。</li><li>比较系统碰撞前后的总动量。</li><li>处理物体粘连与分离的情况。</li><li>判断外力是否可以忽略。</li><li>分析碰撞过程中系统动量不守恒的误差来源。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">15.10</span>用单摆测量重力加速度</h3>
+<ul class="pts"><li>测量摆长。</li><li>规定摆长的测量起点与终点。</li><li>测量多个周期的总时间。</li><li>通过总时间计算周期。</li><li>研究周期与摆长的关系。</li><li>绘制 T²-L 图像。</li><li>根据图像斜率求重力加速度。</li><li>控制小摆角条件。</li><li>分析计时误差、摆长测量误差与空气阻力的影响。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">15.11</span>力学实验通用设问</h3>
+<ul class="pts"><li>为什么选择这种实验装置？</li><li>实验中需要控制哪些变量？</li><li>为什么需要平衡摩擦力？</li><li>哪些物理量可以直接测量，哪些需要间接计算？</li><li>图像的横轴与纵轴应怎样选取？</li><li>如何通过斜率求待测物理量？</li><li>如何判断数据是否满足理论关系？</li><li>实验结果偏离理论值可能是什么原因？</li><li>如何改进实验装置或测量方法？</li><li>如果一个器材不可用，如何设计替代方案？</li></ul>
+</div>
+<h2>本章题目（0）</h2><div class="empty">本章题目整理中 —— 考点框架已就绪，题目将按上方小节逐条编码录入。</div>
+<div class="pager"><a href="ch14.html"><small>← 上一章</small>第 14 章 原子物理与原子核</a><a class="next" href="ch16.html"><small>下一章 →</small>第 16 章 电学与电磁实验</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

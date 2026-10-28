@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第4章 万有引力与宇宙航行 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 4 章</div>
+  <h1>第 4 章 · 万有引力与宇宙航行</h1>
+  <div class="sub">第一部分 · 基础力学 · 共 5 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="card sec"><h3><span class="no">4.1</span>万有引力定律</h3>
+<ul class="pts"><li>万有引力定律及适用条件。</li><li>引力与质量、距离的关系。</li><li>引力方向。</li><li>球体或天体可视为质点时的引力计算。</li><li>多个天体引力的矢量叠加。</li><li>质量分布与引力场的定性判断。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">4.2</span>重力与重力加速度</h3>
+<ul class="pts"><li>地球表面的重力近似。</li><li>地表重力加速度与天体质量、半径的关系。</li><li>不同星球表面的重力比较。</li><li>距地面一定高度处的重力加速度。</li><li>高度变化引起的重力变化。</li><li>中心天体参数的反求。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">4.3</span>天体运动规律</h3>
+<ul class="pts"><li>开普勒定律。</li><li>行星及卫星的近似圆周运动。</li><li>向心力由万有引力提供。</li><li>轨道半径、线速度、角速度、周期之间的关系。</li><li>不同轨道卫星的速度和周期比较。</li><li>卫星轨道高度与周期的关系。</li><li>天体质量的测量与估算。</li><li>中心天体质量、密度及半径的反求。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">4.4</span>卫星与宇宙航行</h3>
+<ul class="pts"><li>人造卫星的轨道运动。</li><li>地球同步卫星与地球同步转动。</li><li>同步卫星的轨道半径、周期及轨道平面限制。</li><li>近地卫星与同步卫星的比较。</li><li>第一宇宙速度。</li><li>第二宇宙速度的物理含义。</li><li>卫星发射与圆轨道速度。</li><li>变轨问题与轨道高低比较。</li><li>变轨过程中速度、动能、势能的变化。</li><li>卫星在不同轨道上的机械能。</li><li>卫星绕行周期与轨道半径的关系。</li><li>根据观测数据估计天体参数。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">4.5</span>本章易错点</h3>
+<ul class="pts"><li>轨道半径是到天体中心的距离，不是离表面的高度。</li><li>卫星速度随轨道半径增大而减小，但轨道周期增大。</li><li>卫星向心加速度由引力提供，不能把“向心力”再作为独立的一种力重复加入受力图。</li><li>轨道变高时，速度大小与机械能的变化必须区分分析。</li></ul>
+</div>
+<h2>本章题目（1）</h2><a class="qcard" href="/exam/gaokao/solve/gaokao_gravity_001/"><div><div class="qt">同步卫星与黄金代换<span class="badge type">C09</span></div><div class="qd">用黄金代换 GM=gR² 求地球同步卫星的轨道半径。</div><div style="margin-top:6px"><span class="tag">考点 4.4</span><span class="tag">天体 · 计算</span></div></div><div class="go">进入解题训练 →</div></a>
+<div class="pager"><a href="ch03.html"><small>← 上一章</small>第 3 章 曲线运动与圆周运动</a><a class="next" href="ch05.html"><small>下一章 →</small>第 5 章 功、功率与机械能</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

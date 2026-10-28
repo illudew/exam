@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第7章 电场与磁场 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 7 章</div>
+  <h1>第 7 章 · 电场与磁场</h1>
+  <div class="sub">第二部分 · 电学与电磁学 · 共 12 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="callout">本章将静电场、恒定磁场、带电粒子运动及复合场统一分类。</div>
+<div class="card sec"><h3><span class="no">7.1</span>电荷与库仑定律</h3>
+<ul class="pts"><li>电荷、电荷守恒及电荷间相互作用。</li><li>元电荷与电荷量。</li><li>点电荷模型及其适用条件。</li><li>库仑定律的大小、方向和适用条件。</li><li>多个点电荷间的库仑力叠加。</li><li>共线电荷与平衡位置。</li><li>同号、异号电荷的受力分析。</li><li>电荷重新分配与接触后的电荷量。</li><li>电荷守恒与静电平衡结合。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">7.2</span>电场强度与电场线</h3>
+<ul class="pts"><li>电场的概念。</li><li>电场强度的定义及方向。</li><li>点电荷产生的电场。</li><li>电场强度的矢量叠加。</li><li>匀强电场。</li><li>电场线的方向、疏密与性质。</li><li>正、负点电荷的电场线。</li><li>等量同号、异号点电荷的电场分布。</li><li>多个点电荷形成的合场。</li><li>场强为零的位置及其判断。</li><li>电场力与电场强度的关系。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">7.3</span>电势、电势差与电势能</h3>
+<ul class="pts"><li>电势的定义及相对性。</li><li>电势差与电场力做功。</li><li>电势能及其变化。</li><li>电场力做功与电势能变化之间的关系。</li><li>正电荷、负电荷在电场中的运动。</li><li>电势高低与电场强度大小的区别。</li><li>等势面与电场线的关系。</li><li>沿电场方向电势的变化。</li><li>点电荷电势及多个点电荷的电势叠加。</li><li>电势能零点的选取。</li><li>电场力做功与路径无关的性质。</li><li>电势—位置图像与场强的关系。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">7.4</span>电场中的粒子运动</h3>
+<ul class="pts"><li>带电粒子在电场中的加速。</li><li>电场力与加速度。</li><li>初速度与电场方向相同或相反的情况。</li><li>带电粒子在匀强电场中的类平抛运动。</li><li>水平偏转与竖直偏转。</li><li>偏转角、偏移量和飞行时间。</li><li>带电粒子的速度变化。</li><li>粒子从电场中射出后的速度方向。</li><li>电势差与动能变化。</li><li>电场中的轨迹、速度和受力方向判断。</li><li>电场力做功与动能定理结合。</li><li>电场中的直线运动、转向和往返运动。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">7.5</span>电容器</h3>
+<ul class="pts"><li>电容器的构造与储存电荷的功能。</li><li>电容的定义。</li><li>电容与电荷量、电压的关系。</li><li>平行板电容器的定性规律。</li><li>电容器与电源连接时的电压约束。</li><li>电容器断开电源后的电荷量约束。</li><li>极板距离、正对面积和介质变化。</li><li>电容器充电、放电的基本现象。</li><li>极板电势差、场强及电场能的变化。</li><li>插入介质或改变极板位置的综合问题。</li><li>多个电容器串并联与电荷重新分配。</li><li>带电粒子在电容器间的运动。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">7.6</span>磁场与磁感应强度</h3>
+<ul class="pts"><li>磁场的概念与磁感线。</li><li>磁感应强度的方向和大小。</li><li>匀强磁场。</li><li>通电直导线周围的磁场。</li><li>环形电流与通电螺线管的磁场。</li><li>安培定则。</li><li>磁场方向的空间判断。</li><li>磁场叠加的定性分析。</li><li>地磁场及实际应用中的磁场方向判断。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">7.7</span>安培力</h3>
+<ul class="pts"><li>安培力的方向与大小。</li><li>左手定则。</li><li>通电导线与磁场平行、垂直及成任意角度时的安培力。</li><li>通电直导线受力。</li><li>通电线框在磁场中的受力。</li><li>多根导线之间的相互作用。</li><li>安培力与平衡条件结合。</li><li>安培力与运动学、能量问题结合。</li><li>通电导轨、导体棒的动力学分析。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">7.8</span>洛伦兹力</h3>
+<ul class="pts"><li>洛伦兹力的方向。</li><li>带电粒子在磁场中的受力。</li><li>洛伦兹力不做功的判断。</li><li>带电粒子速度方向与磁场方向的关系。</li><li>垂直进入匀强磁场的圆周运动。</li><li>平行于磁场运动时的轨迹。</li><li>斜射进入磁场后的螺旋运动的定性认识。</li><li>运动半径、周期、速度与电荷量、质量和磁感应强度的关系。</li><li>电荷正负对偏转方向的影响。</li><li>同一磁场中不同粒子的运动比较。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">7.9</span>有界磁场与轨迹几何</h3>
+<ul class="pts"><li>圆形有界磁场。</li><li>矩形有界磁场。</li><li>带电粒子从边界进入与离开。</li><li>圆心、半径与轨迹圆弧的几何关系。</li><li>入射点、出射点与偏转角。</li><li>临界轨迹与临界半径。</li><li>粒子恰好从某边界射出。</li><li>粒子在磁场中运动的最长时间与最短时间。</li><li>粒子多次进入磁场。</li><li>不同粒子在磁场中轨迹的比较。</li><li>利用弦长、圆心角和几何对称性求解。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">7.10</span>带电粒子在组合场和复合场中的运动</h3>
+<ul class="pts"><li>先电场加速、再进入磁场偏转。</li><li>电场与磁场分区排列。</li><li>交替分布的电场区和磁场区。</li><li>相互垂直的电场与磁场。</li><li>重力与电场力共同作用。</li><li>重力与洛伦兹力共同作用。</li><li>电场力、重力及洛伦兹力共同作用。</li><li>速度选择器。</li><li>质谱仪。</li><li>回旋加速器的基本原理。</li><li>带电粒子在组合场中多次转向。</li><li>粒子能否到达指定区域或穿过指定边界。</li><li>由轨迹反求速度、电荷量、质量或磁感应强度。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">7.11</span>电场、磁场综合图像与临界条件</h3>
+<ul class="pts"><li>电场中的速度、加速度与轨迹。</li><li>磁场中圆弧轨迹的几何分析。</li><li>不同电性粒子的轨迹比较。</li><li>速度大小变化与轨迹半径变化。</li><li>电场加速与磁场偏转的连续计算。</li><li>多区域场的边界连接。</li><li>速度方向、场方向与粒子电性的综合判断。</li><li>参数变化引起的轨迹临界变化。</li><li>粒子是否能返回初始区域。</li><li>粒子是否会从特定出口射出。</li></ul>
+</div>
+<h2>7.12 本章典型题型</h2><div class="card"><ul class="pts" style="columns:1"><li>电荷受力与电场强度叠加。</li><li>电势、电场力做功与动能变化。</li><li>平行板电容器动态变化。</li><li>带电粒子在电场中加速、偏转。</li><li>安培力与通电导体受力。</li><li>带电粒子在匀强磁场中做圆周运动。</li><li>有界磁场的轨迹几何。</li><li>电场加速与磁场偏转组合。</li><li>速度选择器、质谱仪及回旋加速器。</li><li>电场、磁场与重力共同作用的复合场问题。</li></ul></div>
+<div class="note"><b>要点</b> · 本章最容易混淆的关系：电场力一般可以改变粒子速度大小；理想匀强磁场中的洛伦兹力只改变速度方向，不改变粒子速率。</div>
+<h2>本章题目（1）</h2><a class="qcard" href="/exam/gaokao/solve/gaokao_bfield_001/"><div><div class="qt">洛伦兹力圆周运动<span class="badge type">C20</span></div><div class="qd">正电荷垂直射入匀强磁场，求轨道半径、周期及偏转 90° 的运动时间。</div><div style="margin-top:6px"><span class="tag">考点 7.8 / 7.9</span><span class="tag">电磁 · 计算</span></div></div><div class="go">进入解题训练 →</div></a>
+<div class="pager"><a href="ch06.html"><small>← 上一章</small>第 6 章 动量与碰撞</a><a class="next" href="ch08.html"><small>下一章 →</small>第 8 章 恒定电流与电路</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

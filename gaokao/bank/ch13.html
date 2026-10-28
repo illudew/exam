@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第13章 热学与热力学 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 13 章</div>
+  <h1>第 13 章 · 热学与热力学</h1>
+  <div class="sub">第三部分 · 机械振动、波、光与热学 · 共 8 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="card sec"><h3><span class="no">13.1</span>分子动理论</h3>
+<ul class="pts"><li>物质由大量分子组成。</li><li>分子间的空隙。</li><li>分子热运动。</li><li>扩散现象。</li><li>布朗运动的基本认识。</li><li>分子间相互作用力。</li><li>分子势能随分子间距离的变化。</li><li>温度与分子热运动平均动能的关系。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">13.2</span>温度、内能与热量</h3>
+<ul class="pts"><li>温度的物理意义。</li><li>内能的组成。</li><li>内能与温度、物态的关系。</li><li>热传递。</li><li>做功改变内能。</li><li>热量与内能的区别。</li><li>吸热、放热和内能变化。</li><li>热平衡及温度变化。</li><li>物态变化中的能量吸收或释放。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">13.3</span>理想气体与状态参量</h3>
+<ul class="pts"><li>理想气体模型。</li><li>压强、体积、温度三个状态参量。</li><li>热力学温度。</li><li>理想气体状态方程。</li><li>一定质量气体的状态变化。</li><li>状态方程中的单位统一。</li><li>不同状态之间的参量比较。</li><li>气体混合及分子量相关基础问题。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">13.4</span>气体实验定律</h3>
+<ul class="pts"><li>等温变化。</li><li>等压变化。</li><li>等容变化。</li><li>波义耳定律。</li><li>查理定律与盖—吕萨克定律。</li><li>状态变化过程的图像表示。</li><li>p-V、p-T、V-T 图像分析。</li><li>多阶段气体状态变化。</li><li>理想气体状态方程与图像综合。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">13.5</span>气体压强的微观解释</h3>
+<ul class="pts"><li>气体分子的无规则运动。</li><li>分子与器壁碰撞造成的压强。</li><li>温度、分子平均动能与压强的关系。</li><li>体积变化引起的压强变化。</li><li>分子数密度变化的影响。</li><li>气体状态参量的微观解释。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">13.6</span>热力学第一定律与能量守恒</h3>
+<ul class="pts"><li>热力学第一定律的基本表达。</li><li>吸收热量、外界做功及内能变化。</li><li>气体膨胀与压缩。</li><li>等温、等压、等容过程中的能量关系。</li><li>气体做功与 p-V 图像。</li><li>气体吸热、放热与内能变化的判断。</li><li>分阶段过程中的内能变化。</li><li>热力学过程与机械功的联系。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">13.7</span>热机与热力学应用</h3>
+<ul class="pts"><li>热机的基本原理。</li><li>热机效率。</li><li>热量利用与能量转化。</li><li>理想化热力学循环的基本认识。</li><li>热力学第二定律的定性理解。</li><li>能量转化的方向性。</li><li>热学与生活、工业中的应用。</li></ul>
+</div>
+<h2>13.8 热学常见题型</h2><div class="card"><ul class="pts" style="columns:1"><li>分子动理论判断题。</li><li>内能变化与热量、做功综合题。</li><li>理想气体状态方程计算题。</li><li>多阶段气体状态变化。</li><li>气体图像题。</li><li>活塞与气体综合题。</li><li>热力学第一定律与能量守恒题。</li></ul></div>
+<div class="note"><b>要点</b> · 热学部分应区分定性理解、基本计算和复杂的气体过程分析。具体题库中某一类的实际出现频率，需要逐卷统计。</div>
+<h2>本章题目（0）</h2><div class="empty">本章题目整理中 —— 考点框架已就绪，题目将按上方小节逐条编码录入。</div>
+<div class="pager"><a href="ch12.html"><small>← 上一章</small>第 12 章 光学</a><a class="next" href="ch14.html"><small>下一章 →</small>第 14 章 原子物理与原子核</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

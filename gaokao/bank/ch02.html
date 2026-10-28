@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第2章 力与牛顿运动定律 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 2 章</div>
+  <h1>第 2 章 · 力与牛顿运动定律</h1>
+  <div class="sub">第一部分 · 基础力学 · 共 9 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="card sec"><h3><span class="no">2.1</span>常见力的识别与计算</h3>
+<ul class="pts"><li>重力：大小、方向及重心。</li><li>弹力：产生条件、方向及大小。</li><li>弹簧弹力与胡克定律。</li><li>静摩擦力：产生条件、方向、大小范围。</li><li>滑动摩擦力：方向与大小。</li><li>最大静摩擦力与滑动摩擦力的区别。</li><li>绳的拉力、杆的弹力及接触力。</li><li>支持力、压力与受力对象的区分。</li><li>力的独立性与叠加。</li><li>力的分解、合成及正交分解。</li><li>三力平衡与多力平衡。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">2.2</span>受力分析与平衡</h3>
+<ul class="pts"><li>明确研究对象。</li><li>隔离法与整体法。</li><li>受力图的规范绘制。</li><li>重力、弹力、摩擦力的条件判断。</li><li>共点力平衡。</li><li>正交方向分解与平衡方程。</li><li>斜面上的平衡问题。</li><li>绳结、滑轮与多个物体的静力平衡。</li><li>物体缓慢移动时的准静态平衡。</li><li>动态平衡：一个力方向变化时其他力的变化。</li><li>三力汇交与力三角形。</li><li>临界平衡：刚要滑动、刚要离开接触面、绳刚好绷紧等。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">2.3</span>牛顿第一、第二、第三定律</h3>
+<ul class="pts"><li>惯性与惯性参考系。</li><li>牛顿第二定律的矢量形式。</li><li>合力与加速度的关系。</li><li>加速度方向与速度方向的区别。</li><li>牛顿第三定律中的作用力、反作用力。</li><li>作用力与反作用力和一对平衡力的区别。</li><li>连接体中相互作用力的分析。</li><li>加速度不同时的动力学描述。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">2.4</span>单体动力学</h3>
+<ul class="pts"><li>水平面上受力与加速度。</li><li>斜面上受力与加速度。</li><li>拉力、推力及夹角变化。</li><li>摩擦力改变时的运动状态。</li><li>由加速度反求力。</li><li>由力求运动状态，再用运动学公式求时间、位移。</li><li>物体从静止开始运动。</li><li>物体在不同受力阶段运动。</li><li>合力变化引起的加速度变化。</li><li>物体在水平面与斜面之间转换。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">2.5</span>连接体与多物体系统</h3>
+<ul class="pts"><li>两物体通过轻绳连接。</li><li>定滑轮、动滑轮与绳长约束。</li><li>两物体通过轻杆连接。</li><li>多个物体串联、并列或叠放。</li><li>整体法求系统加速度。</li><li>隔离法求内部拉力、支持力或摩擦力。</li><li>连接体的运动学约束。</li><li>绳松弛与绳绷紧的状态转换。</li><li>绳两端物体加速度的关系。</li><li>多物体不同方向运动。</li><li>系统中有一个物体离开、加入或改变接触关系。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">2.6</span>摩擦与相对运动</h3>
+<ul class="pts"><li>静摩擦力是否存在及方向判断。</li><li>滑动摩擦力与相对滑动方向。</li><li>叠放物体是否发生相对运动。</li><li>摩擦力使系统加速还是减速。</li><li>传送带上的相对滑动。</li><li>传送带突然启动、制动或变速。</li><li>滑块与木板的共同运动和相对运动。</li><li>刚好不滑动的临界条件。</li><li>摩擦力突变前后的动力学分析。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">2.7</span>超重与失重</h3>
+<ul class="pts"><li>电梯上行、下行及加减速。</li><li>支持力与重力的关系。</li><li>视重与真实重力的区别。</li><li>加速上升、减速上升。</li><li>加速下降、减速下降。</li><li>完全失重及其动力学条件。</li><li>通过测力计示数反求加速度。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">2.8</span>动力学临界问题</h3>
+<ul class="pts"><li>刚好开始滑动。</li><li>刚好不发生相对滑动。</li><li>刚好脱离接触面。</li><li>绳恰好绷紧或松弛。</li><li>物体恰好不碰撞。</li><li>加速度达到极值。</li><li>某个力恰好为零。</li><li>接触力、摩擦力方向发生改变。</li><li>不同运动状态之间的切换条件。</li></ul>
+</div>
+<h2>2.9 本章常见题型</h2><div class="card"><ul class="pts" style="columns:1"><li>受力分析与平衡题。</li><li>单体牛顿第二定律计算题。</li><li>整体法与隔离法综合题。</li><li>连接体与绳约束问题。</li><li>斜面和摩擦综合问题。</li><li>电梯与超失重问题。</li><li>滑块—木板模型。</li><li>临界条件与多过程动力学问题。</li></ul></div>
+<div class="note"><b>要点</b> · 本章核心顺序：确定研究对象 → 画受力图 → 建立坐标轴 → 列动力学方程 → 判断运动状态 → 与运动学关系连接。</div>
+<h2>本章题目（3）</h2><a class="qcard" href="/exam/gaokao/solve/gaokao_inclined_001/"><div><div class="qt">光滑斜面上的滑块<span class="badge type">C03</span></div><div class="qd">滑块从光滑斜面顶端由静止下滑，用机械能守恒与牛顿定律求到底端的速度。</div><div style="margin-top:6px"><span class="tag">考点 2.4 / 5.5</span><span class="tag">力学 · 综合</span></div></div><div class="go">进入解题训练 →</div></a>
+<a class="qcard" href="/exam/gaokao/solve/gaokao_connected_001/"><div><div class="qt">定滑轮连接两物块<span class="badge type">C02</span></div><div class="qd">光滑水平面上两物块经定滑轮轻绳连接，求共同加速度与绳中拉力。</div><div style="margin-top:6px"><span class="tag">考点 2.5</span><span class="tag">力学 · 综合</span></div></div><div class="go">进入解题训练 →</div></a>
+<a class="qcard" href="/exam/gaokao/solve/gaokao_belt_001/"><div><div class="qt">水平传送带<span class="badge type">C04</span></div><div class="qd">物块轻放于匀速传送带，求运动时间与系统产生的内能（摩擦生热）。</div><div style="margin-top:6px"><span class="tag">考点 2.6 / 1.7</span><span class="tag">力学 · 综合</span></div></div><div class="go">进入解题训练 →</div></a>
+<div class="pager"><a href="ch01.html"><small>← 上一章</small>第 1 章 运动学</a><a class="next" href="ch03.html"><small>下一章 →</small>第 3 章 曲线运动与圆周运动</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

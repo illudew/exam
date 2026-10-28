@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第6章 动量与碰撞 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 6 章</div>
+  <h1>第 6 章 · 动量与碰撞</h1>
+  <div class="sub">第一部分 · 基础力学 · 共 8 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="callout">本章主要处理一般机械碰撞、冲量和反冲问题。电磁感应情境中的动量变化归第 9 章。</div>
+<div class="card sec"><h3><span class="no">6.1</span>冲量</h3>
+<ul class="pts"><li>冲量的定义。</li><li>力与作用时间的关系。</li><li>冲量的方向。</li><li>恒力冲量与变力冲量。</li><li>力—时间图像的面积意义。</li><li>多个力冲量的矢量叠加。</li><li>冲量与速度变化的关系。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">6.2</span>动量定理</h3>
+<ul class="pts"><li>动量的定义与方向。</li><li>动量变化量。</li><li>合外力冲量与动量变化。</li><li>单物体受力过程。</li><li>碰撞过程的冲量分析。</li><li>短时大力作用。</li><li>缓冲、反冲和安全防护问题。</li><li>由力—时间图像求动量变化。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">6.3</span>动量守恒定律</h3>
+<ul class="pts"><li>动量守恒的条件。</li><li>系统与外力的选择。</li><li>内力与外力。</li><li>一维动量守恒。</li><li>二维动量守恒与分方向列式。</li><li>碰撞前后系统动量比较。</li><li>系统部分物体速度已知时的反求。</li><li>动量守恒与能量关系的联合使用。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">6.4</span>碰撞类型</h3>
+<ul class="pts"><li>弹性碰撞。</li><li>非弹性碰撞。</li><li>完全非弹性碰撞。</li><li>碰撞中的动量守恒。</li><li>碰撞中的机械能变化。</li><li>碰撞后共同运动的速度。</li><li>碰撞后分离运动的速度。</li><li>碰撞是否可能发生的条件判断。</li><li>碰撞前后运动方向改变。</li><li>多次连续碰撞及碰撞顺序。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">6.5</span>典型动量模型</h3>
+<ul class="pts"><li>子弹打木块。</li><li>子弹穿过木块。</li><li>两滑块相撞。</li><li>两物体通过弹簧相互作用。</li><li>碰撞后连接或分离。</li><li>物体爆炸与碎片运动。</li><li>反冲与火箭运动的基本模型。</li><li>人船模型。</li><li>滑块在光滑面上相互作用。</li><li>多物体系统的动量分配。</li><li>两维碰撞中的方向约束。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">6.6</span>动量与机械能综合</h3>
+<ul class="pts"><li>动量守恒与机械能守恒同时成立。</li><li>动量守恒但机械能不守恒。</li><li>碰撞前后机械能损失。</li><li>碰撞与弹簧压缩。</li><li>碰撞与斜面运动。</li><li>碰撞与摩擦滑动。</li><li>碰撞后进入圆周运动。</li><li>碰撞后达到某个高度或速度。</li><li>由能量条件反求碰撞后速度。</li><li>由碰撞条件判断结果是否可行。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">6.7</span>人船模型与系统质心</h3>
+<ul class="pts"><li>人在船上移动。</li><li>人与船的相对位移。</li><li>系统质心位置不变的条件。</li><li>人与船的速度关系。</li><li>船的位移与人的相对位移。</li><li>水平外力不可忽略时的条件修正。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">6.8</span>题目中的关键判断</h3>
+<ul class="pts"><li>是否可以把物体组成一个系统。</li><li>研究时间段内外力是否可以忽略。</li><li>速度是相对地面还是相对另一物体。</li><li>动量守恒能否直接使用。</li><li>是否同时有机械能守恒条件。</li><li>碰撞是否为完全非弹性碰撞。</li><li>是否需要分方向列动量守恒方程。</li></ul>
+</div>
+<h2>本章题目（1）</h2><a class="qcard" href="/exam/gaokao/solve/gaokao_collision_001/"><div><div class="qt">完全弹性碰撞<span class="badge type">C12</span></div><div class="qd">光滑水平面上完全弹性正碰，联立动量守恒与机械能守恒求碰后速度。</div><div style="margin-top:6px"><span class="tag">考点 6.4 / 6.6</span><span class="tag">动量 · 计算</span></div></div><div class="go">进入解题训练 →</div></a>
+<div class="pager"><a href="ch05.html"><small>← 上一章</small>第 5 章 功、功率与机械能</a><a class="next" href="ch07.html"><small>下一章 →</small>第 7 章 电场与磁场</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

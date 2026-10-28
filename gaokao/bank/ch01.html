@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第1章 运动学 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 1 章</div>
+  <h1>第 1 章 · 运动学</h1>
+  <div class="sub">第一部分 · 基础力学 · 共 8 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="card sec"><h3><span class="no">1.1</span>参考系与质点模型</h3>
+<ul class="pts"><li>参考系的选择及运动描述的相对性。</li><li>质点模型的建立条件。</li><li>研究对象的选取：单个物体、物体系统。</li><li>时间与时刻的区别。</li><li>路程与位移的区别。</li><li>标量与矢量的区别。</li><li>一维运动中正方向的规定。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">1.2</span>位置、位移、速度与加速度</h3>
+<ul class="pts"><li>位置坐标与位置变化量。</li><li>位移的大小、方向及正负号。</li><li>平均速度与平均速率。</li><li>瞬时速度与瞬时速率。</li><li>平均加速度与瞬时加速度。</li><li>速度方向与加速度方向的关系。</li><li>加速、减速、速度反向及运动方向改变。</li><li>速度为零时加速度是否为零。</li><li>加速度恒定与速度恒定的区别。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">1.3</span>匀变速直线运动</h3>
+<ul class="pts"><li>速度公式、位移公式及速度—位移关系。</li><li>初速度、末速度、加速度、时间和位移之间的关系。</li><li>初速度为零的匀加速运动。</li><li>匀减速直线运动。</li><li>逆向分析：把匀减速过程看成反方向的匀加速运动。</li><li>分阶段运动：不同阶段分别列式，再连接边界条件。</li><li>平均速度公式的适用条件。</li><li>中间时刻速度与中间位置速度。</li><li>连续相等时间内的位移差规律。</li><li>初速度、加速度、运动时间或位移的反求。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">1.4</span>自由落体与竖直上抛</h3>
+<ul class="pts"><li>自由落体运动的基本规律。</li><li>重力加速度的物理意义。</li><li>竖直上抛的上升阶段、最高点和下降阶段。</li><li>上升时间与下降时间的关系。</li><li>上升最大高度。</li><li>以最高点为分界的运动分析。</li><li>同一位置上升和下降时的速度关系。</li><li>多物体同时释放、先后释放及追及问题。</li><li>不同高度物体的落地时间与落地速度比较。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">1.5</span>运动学图像</h3>
+<ul class="pts"><li>位移—时间图像（x-t 图像）。</li><li>速度—时间图像（v-t 图像）。</li><li>加速度—时间图像（a-t 图像）。</li><li>图像斜率的物理意义。</li><li>图像斜率及有向面积的物理意义。</li><li>图像与速度变化量的关系。</li><li>图像拐点、交点、斜率变化与运动状态变化。</li><li>由图像还原分段运动过程。</li><li>由文字叙述建立图像。</li><li>图像与运动学公式相互验证。</li><li>多条图线的相对运动比较。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">1.6</span>追及、相遇与多阶段运动</h3>
+<ul class="pts"><li>同向追及。</li><li>相向运动与相遇。</li><li>速度相等时的临界关系。</li><li>最小距离与最大距离。</li><li>追及条件与碰撞条件。</li><li>起动延迟、制动延迟。</li><li>匀加速与匀速组合运动。</li><li>匀减速与匀速组合运动。</li><li>多阶段运动的时间、位移和速度衔接。</li><li>通过图像或相对运动简化追及问题。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">1.7</span>相对运动与运动学建模</h3>
+<ul class="pts"><li>相对位置、相对速度和相对加速度。</li><li>两个物体的相对运动关系。</li><li>传送带上物体的运动学分析。</li><li>电梯、升降台等场景中的运动描述。</li><li>多物体同向、反向运动的统一坐标法。</li><li>运动过程的分段与边界条件确定。</li><li>利用极值、判别式或图像判断是否相遇。</li></ul>
+</div>
+<h2>1.8 本章常见题型</h2><table><tr><th>题型</th><th>核心任务</th></tr><tr><td>基本公式题</td><td>由已知量求未知运动量</td></tr><tr><td>图像分析题</td><td>从斜率、面积、交点识别运动状态</td></tr><tr><td>追及相遇题</td><td>求相遇时间、临界距离或不碰撞条件</td></tr><tr><td>多阶段题</td><td>分段列式并连接运动状态</td></tr><tr><td>实际应用题</td><td>从交通、制动、运动设备等情境抽取运动模型</td></tr></table>
+<div class="note"><b>要点</b> · 本章关键能力：建立统一的正方向，明确矢量符号，并将复杂运动拆分为边界清楚的阶段。</div>
+<div class="callout warn"><b>易错提醒</b> · 物体到达竖直上抛的最高点时，瞬时速度为零，但加速度仍为重力加速度 g。</div>
+<h2>本章题目（0）</h2><div class="empty">本章题目整理中 —— 考点框架已就绪，题目将按上方小节逐条编码录入。</div>
+<div class="pager"><a href="index.html"><small>← 返回</small>题库总览</a><a class="next" href="ch02.html"><small>下一章 →</small>第 2 章 力与牛顿运动定律</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第18章 跨章节综合题型总表 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 18 章</div>
+  <h1>第 18 章 · 跨章节综合题型总表</h1>
+  <div class="sub">第五部分 · 跨章节综合题 · 共 4 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="callout">综合题不是独立的新知识，而是把前 17 章的规律按特定物理过程组合起来。分类时，应区分主要情境和辅助工具：例如导体棒运动过程中使用动量定理，主分类仍是第 9 章电磁感应。</div>
+<h2>18.1 力学内部综合</h2><table><tr><th>编号</th><th>综合题型</th><th>主要考点与解题任务</th></tr><tr><td><code>C01</code></td><td>运动学＋牛顿运动定律</td><td>先求加速度，再求速度、时间和位移</td></tr><tr><td><code>C02</code></td><td>连接体＋整体法与隔离法</td><td>求系统加速度及内部拉力、支持力</td></tr><tr><td><code>C03</code></td><td>斜面＋摩擦＋多阶段运动</td><td>分析摩擦方向、加速度和阶段衔接</td></tr><tr><td><code>C04</code></td><td>传送带＋相对运动</td><td>判断相对滑动、共同运动及临界条件</td></tr><tr><td><code>C05</code></td><td>滑块＋木板</td><td>求相对运动时间、相对位移和共同速度</td></tr><tr><td><code>C06</code></td><td>运动学＋图像</td><td>从图像求速度、加速度、位移和临界时刻</td></tr><tr><td><code>C07</code></td><td>平抛＋几何关系</td><td>根据落点、角度和距离反求初速度或高度</td></tr><tr><td><code>C08</code></td><td>圆周运动＋机械能</td><td>根据能量求速度，再判断向心力条件</td></tr><tr><td><code>C09</code></td><td>万有引力＋圆周运动</td><td>计算卫星速度、周期、轨道半径及中心天体质量</td></tr><tr><td><code>C10</code></td><td>动力学＋功与能</td><td>根据受力求过程，或用动能定理简化全过程</td></tr><tr><td><code>C11</code></td><td>弹簧＋动量守恒</td><td>分析系统动量及弹性势能变化</td></tr><tr><td><code>C12</code></td><td>碰撞＋机械能</td><td>先求碰撞后速度，再分析后续运动</td></tr><tr><td><code>C13</code></td><td>动量＋摩擦</td><td>分析冲量、动量变化和机械能损失</td></tr><tr><td><code>C14</code></td><td>多物体碰撞＋多阶段运动</td><td>按碰撞前后状态逐段列方程</td></tr><tr><td><code>C15</code></td><td>简谐运动＋能量</td><td>根据位移、速度和能量判断振动状态</td></tr></table>
+<h2>18.2 电场、磁场内部综合</h2><table><tr><th>编号</th><th>综合题型</th><th>主要考点与解题任务</th></tr><tr><td><code>C16</code></td><td>电场＋动能定理</td><td>根据电场力做功求粒子速度和电势差</td></tr><tr><td><code>C17</code></td><td>电场加速＋磁场偏转</td><td>先求进入磁场的速度，再分析圆弧轨迹</td></tr><tr><td><code>C18</code></td><td>电场＋磁场＋重力</td><td>分析合力、平衡状态及粒子运动</td></tr><tr><td><code>C19</code></td><td>电容器＋带电粒子</td><td>联立电势差、场强、加速和偏转关系</td></tr><tr><td><code>C20</code></td><td>有界磁场＋轨迹几何</td><td>求半径、圆心角、出射位置和运动时间</td></tr><tr><td><code>C21</code></td><td>速度选择器＋质谱仪</td><td>判断粒子能否通过，并反求荷质比等参数</td></tr><tr><td><code>C22</code></td><td>多区域电场与磁场</td><td>分段分析粒子在不同区域中的速度和方向</td></tr></table>
+<h2>18.3 电磁感应综合</h2><table><tr><th>编号</th><th>综合题型</th><th>主要考点与解题任务</th></tr><tr><td><code>C23</code></td><td>电磁感应＋牛顿第二定律</td><td>联立感应电动势、回路电流和安培力</td></tr><tr><td><code>C24</code></td><td>电磁感应＋动量定理</td><td>求电磁冲量、速度变化或通过电荷量</td></tr><tr><td><code>C25</code></td><td>电磁感应＋碰撞</td><td>处理导体棒碰撞前后的动量及碰撞后运动</td></tr><tr><td><code>C26</code></td><td>电磁感应＋滑块木板</td><td>同时分析摩擦、安培力和相对运动</td></tr><tr><td><code>C27</code></td><td>电磁感应＋弹簧</td><td>联立电路关系、弹簧势能和运动状态</td></tr><tr><td><code>C28</code></td><td>电磁感应＋能量守恒</td><td>计算外力功、焦耳热、动能和势能变化</td></tr><tr><td><code>C29</code></td><td>多导体棒＋多回路</td><td>判断感应电动势方向、电流分配及棒间作用</td></tr><tr><td><code>C30</code></td><td>恒功率驱动＋电磁感应</td><td>分析速度、安培力和稳定运动状态</td></tr><tr><td><code>C31</code></td><td>电磁感应＋图像</td><td>从磁通量、电动势或电流图像反推过程</td></tr><tr><td><code>C32</code></td><td>非均匀磁场＋运动学</td><td>根据位置变化判断感应电动势及动力学变化</td></tr></table>
+<h2>18.4 振动、波、光与热学综合</h2><table><tr><th>编号</th><th>综合题型</th><th>主要考点与解题任务</th></tr><tr><td><code>C33</code></td><td>弹簧振子＋机械能</td><td>由能量关系求振子速度、振幅或状态</td></tr><tr><td><code>C34</code></td><td>波形图＋振动图像</td><td>判断传播方向、质点振动方向和周期</td></tr><tr><td><code>C35</code></td><td>波的干涉＋几何关系</td><td>由波程差判断加强、减弱或相位差</td></tr><tr><td><code>C36</code></td><td>折射＋全反射</td><td>联立折射定律和几何关系判断光路</td></tr><tr><td><code>C37</code></td><td>双缝干涉＋参数变化</td><td>求条纹间距及其随装置参数的变化</td></tr><tr><td><code>C38</code></td><td>理想气体＋热力学第一定律</td><td>求状态参量变化、气体做功和内能变化</td></tr><tr><td><code>C39</code></td><td>原子能级＋光子</td><td>根据能级差求光子频率、波长或跃迁可能性</td></tr><tr><td><code>C40</code></td><td>光电效应＋图像</td><td>由遏止电压、饱和光电流等信息求参数</td></tr></table>
+<h2>18.5 综合题的常见“组合方式”</h2><p style="color:var(--muted);font-size:14px">在实际试题中，同一套题可能出现不同的组合层级。</p><div class="card"><p><b style="color:var(--pri)">基础组合</b>：两个规律的直接联立，例如运动学＋牛顿第二定律、电场＋动能定理、理想气体状态方程＋图像。</p><p><b style="color:var(--pri)">过程组合</b>：先后经历多个物理阶段，例如碰撞后滑上斜面、粒子先加速再进入磁场、导体棒进入并离开磁场区域。</p><p><b style="color:var(--pri)">系统组合</b>：多个物体或多个子系统相互作用，例如滑块—木板、弹簧—双物体、多导体棒—电路系统。</p><p><b style="color:var(--pri)">高难度组合</b>：多阶段过程、多个约束条件、图像、临界状态与能量或动量规律共同出现。</p></div>
+<h2>本章题目（0）</h2><div class="empty">本章题目整理中 —— 考点框架已就绪，题目将按上方小节逐条编码录入。</div>
+<div class="pager"><a href="ch17.html"><small>← 上一章</small>第 17 章 热学与光学实验</a><a class="next" href="index.html"><small>返回 →</small>题库总览</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

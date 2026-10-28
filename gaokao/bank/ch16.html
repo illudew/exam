@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第16章 电学与电磁实验 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 16 章</div>
+  <h1>第 16 章 · 电学与电磁实验</h1>
+  <div class="sub">第四部分 · 实验与实验设计 · 共 8 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="card sec"><h3><span class="no">16.1</span>长度测量与电阻率测量</h3>
+<ul class="pts"><li>使用刻度尺测量导线长度。</li><li>使用游标卡尺测量导线直径。</li><li>使用螺旋测微器测量细金属丝直径。</li><li>测量导线电阻。</li><li>计算金属丝横截面积。</li><li>根据电阻定律求电阻率。</li><li>多次测量求平均值。</li><li>研究测量误差在最终结果中的传播。</li><li>通过图像求电阻或电阻率。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">16.2</span>多用电表</h3>
+<ul class="pts"><li>多用电表的功能与刻度。</li><li>选择合适的量程。</li><li>测量直流电压。</li><li>测量直流电流。</li><li>测量电阻。</li><li>欧姆挡的使用与调零。</li><li>测量前断开外部电源。</li><li>识别电路中的断路和短路。</li><li>根据电阻测量结果判断元件故障。</li><li>使用多用电表检测二极管等元件的基本思路。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">16.3</span>伏安法测电阻</h3>
+<ul class="pts"><li>电流表内接法。</li><li>电流表外接法。</li><li>电压表内阻对测量的影响。</li><li>电流表内阻对测量的影响。</li><li>根据待测电阻的大小选择接法。</li><li>限流式接法与分压式接法。</li><li>滑动变阻器的连接方式。</li><li>通过 I-U 图像求电阻。</li><li>根据实验要求确定电表量程和电源电压。</li><li>实验器材选择与电路安全性。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">16.4</span>测量电源电动势和内阻</h3>
+<ul class="pts"><li>电路的基本连接方式。</li><li>测量不同负载下的电流和路端电压。</li><li>由闭合电路欧姆定律建立方程。</li><li>绘制路端电压—电流图像。</li><li>由纵轴截距求电动势。</li><li>由图像斜率求内阻。</li><li>电压表、电流表内阻的影响。</li><li>误差来源及实验方案改进。</li><li>通过不同实验方法测量电动势和内阻。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">16.5</span>电容器充放电实验</h3>
+<ul class="pts"><li>电容器的充电现象。</li><li>电容器的放电现象。</li><li>电路切换后的电压、电流变化。</li><li>电容器储存电荷的基本关系。</li><li>电容器与电阻组合的动态过程。</li><li>从电流变化判断充放电状态。</li><li>观察电容器电压随时间变化的定性规律。</li><li>电容器与传感器、电路元件组合。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">16.6</span>电磁感应实验</h3>
+<ul class="pts"><li>观察磁通量变化引起的感应电流。</li><li>磁体插入或拔出线圈。</li><li>改变磁场强弱。</li><li>改变线圈面积或运动状态。</li><li>根据电流表偏转判断感应电流方向。</li><li>使用楞次定律解释感应电流。</li><li>比较不同运动速度下的感应现象。</li><li>识别电磁感应的产生条件。</li><li>研究电路是否闭合对感应电流的影响。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">16.7</span>电学实验图像分析</h3>
+<ul class="pts"><li>U-I 图像。</li><li>I-U 图像。</li><li>电源伏安特性曲线。</li><li>小灯泡的伏安特性曲线。</li><li>电阻的图像斜率与物理意义。</li><li>图像截距与仪器误差。</li><li>通过拟合直线求物理量。</li><li>非线性图像的局部变化。</li><li>数据中异常点的识别与处理。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">16.8</span>电学实验设计题</h3>
+<ul class="pts"><li>选择伏安法、电桥法或其他合适测量方法。</li><li>设计分压式或限流式电路。</li><li>通过替代测量法减小仪表影响。</li><li>选择量程与电源。</li><li>判断元件额定值与安全限制。</li><li>选择测量点数和数据处理方式。</li><li>设计电路以减小系统误差。</li><li>由现有器材设计测量电阻、电压、电流、功率或电源参数的方案。</li></ul>
+</div>
+<h2>本章题目（0）</h2><div class="empty">本章题目整理中 —— 考点框架已就绪，题目将按上方小节逐条编码录入。</div>
+<div class="pager"><a href="ch15.html"><small>← 上一章</small>第 15 章 力学实验</a><a class="next" href="ch17.html"><small>下一章 →</small>第 17 章 热学与光学实验</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

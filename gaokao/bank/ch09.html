@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第9章 电磁感应 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 9 章</div>
+  <h1>第 9 章 · 电磁感应</h1>
+  <div class="sub">第二部分 · 电学与电磁学 · 共 13 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="callout">本章按物理情境统一收录电磁感应与动量、能量、摩擦、碰撞等组合模型。</div>
+<div class="card sec"><h3><span class="no">9.1</span>磁通量</h3>
+<ul class="pts"><li>磁通量的定义。</li><li>磁感应强度、面积及夹角的关系。</li><li>磁通量正负与选定法向的关系。</li><li>磁通量变化的判断。</li><li>磁场变化引起的磁通量变化。</li><li>回路面积变化引起的磁通量变化。</li><li>回路转动引起的磁通量变化。</li><li>多个磁场区域中的磁通量分析。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">9.2</span>法拉第电磁感应定律</h3>
+<ul class="pts"><li>感应电动势的产生条件。</li><li>磁通量变化率与感应电动势。</li><li>单匝与多匝线圈。</li><li>磁场变化与回路面积变化。</li><li>线圈转动产生的感应电动势。</li><li>感应电动势与感应电流的区别。</li><li>感应电动势随时间变化的图像。</li><li>感应电动势与磁通量图像的关系。</li><li>用平均变化率分析一段时间内的感应电动势。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">9.3</span>楞次定律与感应电流方向</h3>
+<ul class="pts"><li>感应电流的磁场总是阻碍磁通量的变化。</li><li>感应电流的方向判断。</li><li>原磁场变化与感应磁场方向的关系。</li><li>线圈靠近或远离磁体。</li><li>磁体插入或拔出线圈。</li><li>磁场增强或减弱。</li><li>磁通量增加或减小时的方向判断。</li><li>闭合回路中的电流方向。</li><li>楞次定律与能量守恒的联系。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">9.4</span>导体切割磁感线</h3>
+<ul class="pts"><li>导体棒在匀强磁场中运动。</li><li>导体运动方向与磁场方向的夹角。</li><li>切割磁感线的有效速度分量。</li><li>动生电动势。</li><li>导体棒两端电势高低。</li><li>感应电流的方向。</li><li>导体棒运动方向改变后的电动势变化。</li><li>多根导体棒切割磁感线。</li><li>转动导体棒产生的感应电动势。</li><li>转动圆盘的发电模型。</li><li>非均匀磁场中的切割问题。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">9.5</span>电磁感应电路</h3>
+<ul class="pts"><li>感应电动势与闭合回路电流。</li><li>电路总电阻及电流计算。</li><li>电阻串并联与感应电流。</li><li>导体棒运动时电路参数的变化。</li><li>电路中感应电流的瞬时变化。</li><li>多导体棒与多个回路。</li><li>电阻网络中的电流分配。</li><li>感应电路中的电功率与焦耳热。</li><li>开路、闭路及电路切换。</li><li>电磁感应中的电表读数。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">9.6</span>导体棒—导轨模型</h3>
+<ul class="pts"><li>单导体棒在平行导轨上滑动。</li><li>导轨电阻可忽略与不可忽略。</li><li>导体棒切割磁感线产生电流。</li><li>安培力阻碍导体相对磁场的运动。</li><li>导体棒的加速度变化。</li><li>导体棒达到稳定速度或终端速度。</li><li>外力恒定、牵引力恒定或功率恒定。</li><li>导体棒离开磁场区域。</li><li>导体棒进入、穿越和离开磁场。</li><li>磁场边界与运动阶段衔接。</li><li>双导轨与多导体棒系统。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">9.7</span>电磁感应与牛顿定律</h3>
+<ul class="pts"><li>导体棒受到安培力后的加速、减速。</li><li>安培力与外力平衡。</li><li>安培力随速度变化。</li><li>加速度随速度变化。</li><li>导体棒运动中的临界速度。</li><li>导体棒与滑块、木板共同运动。</li><li>摩擦力与安培力同时作用。</li><li>两个导体棒的相互作用。</li><li>电磁阻尼与速度变化。</li><li>由受力方程与电路关系联立求解运动。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">9.8</span>电磁感应与动量</h3>
+<div class="callout" style="margin:0 0 10px">这类问题归第 9 章，不在第 6 章重复计数。</div>
+<ul class="pts"><li>导体棒受安培力产生的冲量。</li><li>电磁感应过程中动量的变化。</li><li>由电流对时间的积分求电荷量。</li><li>通过感应电荷量与磁通量变化建立关系。</li><li>导体棒与滑块组成系统的动量变化。</li><li>双导体棒系统的动量分析。</li><li>导体棒与弹簧连接时的冲量和速度变化。</li><li>电磁感应过程中的碰撞。</li><li>导体棒碰撞后继续切割磁感线。</li><li>摩擦与电磁阻力共同造成的动量变化。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">9.9</span>电磁感应与能量</h3>
+<ul class="pts"><li>安培力做功。</li><li>外力做功与焦耳热。</li><li>导体棒动能变化。</li><li>电源或外力输入的机械能转化为电能。</li><li>焦耳热与机械能损失。</li><li>多个电阻上的热量分配。</li><li>导体棒在恒定外力下运动。</li><li>恒功率驱动导体棒。</li><li>电磁感应中的能量守恒。</li><li>导体棒达到稳定速度后各部分功率的关系。</li><li>电磁感应与弹簧势能、重力势能结合。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">9.10</span>多导体棒与复杂电磁感应</h3>
+<ul class="pts"><li>两根导体棒在同一导轨上运动。</li><li>两根导体棒产生的感应电动势方向。</li><li>闭合回路面积变化。</li><li>两导体棒速度不同。</li><li>两棒相向、同向运动。</li><li>导体棒碰撞或距离改变。</li><li>多回路之间的感应电流。</li><li>一根导体棒固定，另一根运动。</li><li>不同磁场区中的导体棒。</li><li>多导体棒系统的电流、力、能量联立。</li><li>导体棒质量、电阻或磁场参数变化后的比较。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">9.11</span>电磁感应图像与变化率</h3>
+<ul class="pts"><li>磁通量—时间图像。</li><li>感应电动势—时间图像。</li><li>感应电流—时间图像。</li><li>电流方向改变的时刻。</li><li>电动势大小的极值。</li><li>非均匀磁场与非匀速运动。</li><li>变磁场、变面积及变角度的综合分析。</li><li>分段磁场与多阶段运动。</li><li>从图像反推运动方向、速度或磁场变化。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">9.12</span>自感与电磁阻尼</h3>
+<ul class="pts"><li>自感现象。</li><li>自感电动势阻碍电流变化。</li><li>通电与断电过程中的自感现象。</li><li>含电感线圈的电路切换。</li><li>磁场储能的定性认识。</li><li>电磁阻尼与机械能转化。</li><li>自感与电磁感应基本定律的联系。</li></ul>
+</div>
+<h2>9.13 本章高难度综合题</h2><div class="card"><ul class="pts" style="columns:1"><li>导体棒 + 电路 + 牛顿第二定律。</li><li>导体棒 + 动量定理 + 电荷量。</li><li>导体棒 + 碰撞 + 动量变化。</li><li>导体棒 + 滑块木板 + 摩擦。</li><li>导体棒 + 弹簧 + 机械能。</li><li>多导体棒 + 多回路 + 能量守恒。</li><li>恒力、恒功率驱动下的电磁感应。</li><li>非均匀磁场 + 运动过程分段。</li><li>电磁感应 + 极值与临界条件。</li><li>图像反演 + 电磁感应动态过程。</li></ul></div>
+<div class="note"><b>要点</b> · 本章统一解法：先确定感应电动势，再求感应电流；随后求安培力，建立动力学方程；最后根据题目需要使用动量定理、能量守恒或分段运动关系。</div>
+<h2>本章题目（1）</h2><a class="qcard" href="/exam/gaokao/solve/gaokao_emind_001/"><div><div class="qt">导体棒切割<span class="badge type">C23</span></div><div class="qd">恒力拉动导体棒沿导轨切割磁感线，求稳定速度及稳定时的功率分配。</div><div style="margin-top:6px"><span class="tag">考点 9.6 / 9.7 / 9.9</span><span class="tag">电磁感应 · 压轴</span></div></div><div class="go">进入解题训练 →</div></a>
+<div class="pager"><a href="ch08.html"><small>← 上一章</small>第 8 章 恒定电流与电路</a><a class="next" href="ch10.html"><small>下一章 →</small>第 10 章 交变电流与电磁振荡</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

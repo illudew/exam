@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第17章 热学与光学实验 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 17 章</div>
+  <h1>第 17 章 · 热学与光学实验</h1>
+  <div class="sub">第四部分 · 实验与实验设计 · 共 5 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="card sec"><h3><span class="no">17.1</span>热学相关测量与实验分析</h3>
+<div class="callout" style="margin:0 0 10px">热学实验在不同教材、课程进度和模拟题中的具体要求可能不同。此处纳入常见实验分析和测量题，不表示所有项目都是统一规定的高考必做实验。</div>
+<ul class="pts"><li>温度测量。</li><li>质量与体积测量。</li><li>研究热传递过程。</li><li>温度变化与吸收或释放热量的关系。</li><li>分析环境散热对实验结果的影响。</li><li>比较不同材料的热学性质。</li><li>通过数据表或图像判断热学规律。</li><li>计算测量过程中的误差。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">17.2</span>测量玻璃的折射率</h3>
+<ul class="pts"><li>测量入射角与折射角。</li><li>根据光路确定入射光线、法线与折射光线。</li><li>通过折射定律求折射率。</li><li>采用插针法描绘光路。</li><li>由多组实验数据求折射率。</li><li>判断介质中的光线偏折方向。</li><li>分析针孔对准、角度读取与作图误差。</li><li>讨论玻璃表面不平整等因素的影响。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">17.3</span>光学实验与光路设计</h3>
+<ul class="pts"><li>测量薄透镜焦距的常见方法。</li><li>调节光学器件的共轴状态。</li><li>判断像的清晰程度。</li><li>测量物距、像距与焦距。</li><li>研究透镜成像规律。</li><li>利用几何关系确定光路。</li><li>研究折射、全反射和色散现象。</li><li>实验装置中光源、透镜、屏的位置调整。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">17.4</span>光的干涉实验</h3>
+<ul class="pts"><li>杨氏双缝干涉装置。</li><li>双缝间距、屏距和波长的测量。</li><li>计算相邻亮纹的间距。</li><li>根据条纹间距求波长。</li><li>研究改变波长或双缝间距对条纹的影响。</li><li>识别亮纹、暗纹和中央亮纹。</li><li>分析屏距、缝距和测量精度对结果的影响。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">17.5</span>实验设计通用能力</h3>
+<ul class="pts"><li>从实验目的判断测量量。</li><li>将理论公式转化为测量关系。</li><li>区分直接测量量与间接测量量。</li><li>确定控制变量。</li><li>选择实验器材。</li><li>绘制规范的实验装置图。</li><li>记录数据并有效处理。</li><li>通过图像求斜率或截距。</li><li>识别实验误差并提出改进方法。</li><li>判断实验结果是否足以支持结论。</li></ul>
+</div>
+<h2>本章题目（0）</h2><div class="empty">本章题目整理中 —— 考点框架已就绪，题目将按上方小节逐条编码录入。</div>
+<div class="pager"><a href="ch16.html"><small>← 上一章</small>第 16 章 电学与电磁实验</a><a class="next" href="ch18.html"><small>下一章 →</small>第 18 章 跨章节综合题型总表</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

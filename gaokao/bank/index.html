@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>高考物理考点题库 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › 考点题库</div>
+  <h1>高考物理 · 考点题库</h1>
+  <div class="sub">18 章体系 · 133 个知识小节 · 40 个综合题型 · 已录入 8 道示例题</div>
+</div></header>
+<div class="wrap">
+<div class="callout"><b>归类规则</b><ol style="margin:6px 0 0 18px"><li>电场与磁场统一归入第 7 章。</li><li>动量与碰撞的一般模型归入第 6 章；若题目核心是导体棒、电磁感应电路、安培力等，则归入第 9 章，即使解题中使用动量定理，也不重复计入第 6 章。</li><li>第 18 章只负责跨章节组合的分类。其中出现的考点仍按主要物理情境归入前 17 章，避免制作题库时重复统计。</li></ol></div>
+<h2>18 章考点体系</h2><div class="card"><h3 style="margin-bottom:12px">第一部分 · 基础力学</h3><div class="grid c3"><a class="chcard" href="ch01.html"><div class="no">第 1 章</div><div class="nm">运动学</div><div class="meta">7 个小节 · 已录入 0 题</div></a><a class="chcard" href="ch02.html"><div class="no">第 2 章</div><div class="nm">力与牛顿运动定律</div><div class="meta">8 个小节 · 已录入 3 题</div></a><a class="chcard" href="ch03.html"><div class="no">第 3 章</div><div class="nm">曲线运动与圆周运动</div><div class="meta">7 个小节 · 已录入 1 题</div></a><a class="chcard" href="ch04.html"><div class="no">第 4 章</div><div class="nm">万有引力与宇宙航行</div><div class="meta">5 个小节 · 已录入 1 题</div></a><a class="chcard" href="ch05.html"><div class="no">第 5 章</div><div class="nm">功、功率与机械能</div><div class="meta">7 个小节 · 已录入 0 题</div></a><a class="chcard" href="ch06.html"><div class="no">第 6 章</div><div class="nm">动量与碰撞</div><div class="meta">8 个小节 · 已录入 1 题</div></a></div></div>
+<div class="card"><h3 style="margin-bottom:12px">第二部分 · 电学与电磁学</h3><div class="grid c3"><a class="chcard" href="ch07.html"><div class="no">第 7 章</div><div class="nm">电场与磁场</div><div class="meta">11 个小节 · 已录入 1 题</div></a><a class="chcard" href="ch08.html"><div class="no">第 8 章</div><div class="nm">恒定电流与电路</div><div class="meta">7 个小节 · 已录入 0 题</div></a><a class="chcard" href="ch09.html"><div class="no">第 9 章</div><div class="nm">电磁感应</div><div class="meta">12 个小节 · 已录入 1 题</div></a><a class="chcard" href="ch10.html"><div class="no">第 10 章</div><div class="nm">交变电流与电磁振荡</div><div class="meta">7 个小节 · 已录入 0 题</div></a></div></div>
+<div class="card"><h3 style="margin-bottom:12px">第三部分 · 机械振动、波、光与热学</h3><div class="grid c3"><a class="chcard" href="ch11.html"><div class="no">第 11 章</div><div class="nm">机械振动与机械波</div><div class="meta">9 个小节 · 已录入 0 题</div></a><a class="chcard" href="ch12.html"><div class="no">第 12 章</div><div class="nm">光学</div><div class="meta">8 个小节 · 已录入 0 题</div></a><a class="chcard" href="ch13.html"><div class="no">第 13 章</div><div class="nm">热学与热力学</div><div class="meta">7 个小节 · 已录入 0 题</div></a><a class="chcard" href="ch14.html"><div class="no">第 14 章</div><div class="nm">原子物理与原子核</div><div class="meta">6 个小节 · 已录入 0 题</div></a></div></div>
+<div class="card"><h3 style="margin-bottom:12px">第四部分 · 实验与实验设计</h3><div class="grid c3"><a class="chcard" href="ch15.html"><div class="no">第 15 章</div><div class="nm">力学实验</div><div class="meta">11 个小节 · 已录入 0 题</div></a><a class="chcard" href="ch16.html"><div class="no">第 16 章</div><div class="nm">电学与电磁实验</div><div class="meta">8 个小节 · 已录入 0 题</div></a><a class="chcard" href="ch17.html"><div class="no">第 17 章</div><div class="nm">热学与光学实验</div><div class="meta">5 个小节 · 已录入 0 题</div></a></div></div>
+<div class="card"><h3 style="margin-bottom:12px">第五部分 · 跨章节综合题</h3><div class="grid c3"><a class="chcard" href="ch18.html"><div class="no">第 18 章</div><div class="nm">跨章节综合题型总表</div><div class="meta">4 个小节 · 已录入 0 题</div></a></div></div>
+<h2>题目录入字段标准</h2>
+<div class="card" style="padding:0;overflow:hidden"><table style="margin:0">
+<tr><th style="width:130px">字段</th><th>记录内容</th></tr>
+<tr><td><b>试卷来源</b></td><td>年份、试卷名称、卷别</td></tr><tr><td><b>题目位置</b></td><td>选择题、实验题、计算题及具体题号</td></tr><tr><td><b>主章节</b></td><td>1—18 章中最主要的一章</td></tr><tr><td><b>次级考点</b></td><td>精确到本目录中的具体小节</td></tr><tr><td><b>题型编号</b></td><td>例如 C05 滑块—木板、C24 电磁感应＋动量</td></tr><tr><td><b>题目层级</b></td><td>基础、综合、压轴</td></tr><tr><td><b>核心工具</b></td><td>牛顿第二定律、能量、动量、图像等</td></tr><tr><td><b>难点类型</b></td><td>建模、过程分段、几何、计算、临界条件等</td></tr><tr><td><b>失分原因</b></td><td>概念、模型识别、公式选用、计算或表达错误</td></tr>
+</table></div>
+<div class="note">一题可以有多个次级考点，但只指定一个主章节 —— 避免同一道电磁感应题同时计入第 6 章和第 9 章。</div>
+<h2>重要程度与真实频率分开统计</h2>
+<div class="card">
+<p><b style="color:var(--pri)">知识学习优先级</b>：按知识的基础性、与其他章节的连接程度、解题必要性评定。</p>
+<p><b style="color:var(--pri)">真题出现频率</b>：按实际收录的真题和模拟卷逐题统计，不能凭知识体系推断出现概率。</p>
+</div>
+<h2>备考题型训练顺序</h2>
+<div class="card"><p><b style="color:var(--pri)">1. 基础规律</b>：能独立识别研究对象、物理量、方向及适用条件。</p><p><b style="color:var(--pri)">2. 单一模型</b>：先熟练完成单章节典型题，例如斜面、平抛、圆周运动、动量守恒。</p><p><b style="color:var(--pri)">3. 双模型组合</b>：训练动量＋能量、电场＋磁场、电磁感应＋动力学等常见组合。</p><p><b style="color:var(--pri)">4. 多阶段综合</b>：训练状态衔接、碰撞前后、进入和离开磁场等分段问题。</p><p><b style="color:var(--pri)">5. 压轴问题</b>：重点处理系统边界、临界条件、多个约束和图像信息。</p></div>
+<div class="callout">天津等级性考试为自主命题，各章题量、题型排名和出现概率需对天津真题与《一飞冲天》试卷逐题编码后才能得出可靠结论，本目录仅作为知识树与题库标签标准。</div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>

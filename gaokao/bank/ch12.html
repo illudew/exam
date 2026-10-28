@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>第12章 光学 · IlluPhy 物理题库</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1c2333;--muted:#5b6474;--line:#e5e8f0;--pri:#2b5fd9;--pri2:#eaf0ff;--ok:#0e9f6e;--warn:#b45309;--code:#f0f3fa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px 64px}
+header.top{background:linear-gradient(135deg,#1e3a8a,#2b5fd9);color:#fff;padding:28px 0 22px;margin-bottom:28px}
+header.top .wrap{padding-bottom:0}
+.crumb{font-size:13px;opacity:.85;margin-bottom:6px}
+.crumb a{color:#fff;text-decoration:none;opacity:.9}
+.crumb a:hover{text-decoration:underline}
+h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+.sub{font-size:14px;opacity:.85;margin-top:4px}
+h2{font-size:20px;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--pri)}
+h3{font-size:16.5px;margin:0 0 10px;color:var(--pri)}
+.callout{background:var(--pri2);border:1px solid #c9d8ff;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:14px}
+.callout b{color:var(--pri)}
+.callout.warn{background:#fff7ed;border-color:#fed7aa}.callout.warn b{color:var(--warn)}
+.note{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14px;color:#065f46}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:0 1px 3px rgba(20,30,60,.05)}
+.sec h3 .no{display:inline-block;background:var(--pri);color:#fff;font-size:12.5px;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:2px}
+ul.pts{list-style:none;margin-top:2px}
+ul.pts li{padding:3px 0 3px 20px;position:relative;color:#333c50}
+ul.pts li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:#93b4f5}
+@media(min-width:720px){ul.pts{columns:2;column-gap:36px}ul.pts li{break-inside:avoid}}
+.grid{display:grid;gap:14px;margin-top:6px}
+.grid.c3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.chcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);transition:box-shadow .15s,border-color .15s}
+.chcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.12)}
+.chcard .no{font-size:12.5px;color:var(--pri);font-weight:600}
+.chcard .nm{font-size:16.5px;font-weight:700;margin:2px 0 6px}
+.chcard .meta{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:14px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--code);color:#333;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+code{background:var(--code);border-radius:5px;padding:1px 7px;font-size:13px;color:var(--pri);font-family:ui-monospace,Consolas,monospace}
+.qcard{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.qcard:hover{border-color:var(--pri);box-shadow:0 4px 14px rgba(43,95,217,.10)}
+.qcard .qt{font-weight:700;font-size:15.5px}
+.qcard .qd{font-size:13.5px;color:var(--muted);margin-top:3px}
+.qcard .go{flex-shrink:0;color:var(--pri);font-size:13.5px;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{display:inline-block;font-size:12px;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px;background:var(--pri2);color:var(--pri)}
+.badge.type{background:#e8f7f1;color:var(--ok)}
+.empty{background:var(--card);border:1px dashed #c9cfdd;border-radius:12px;padding:18px 20px;color:var(--muted);font-size:14px;text-align:center;margin:14px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+.pager a{flex:1;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;text-decoration:none;color:var(--ink);font-size:14px}
+.pager a:hover{border-color:var(--pri)}
+.pager a small{display:block;color:var(--muted);font-size:12px}
+.pager a.next{text-align:right}
+footer.ft{text-align:center;color:var(--muted);font-size:12.5px;margin-top:48px}
+.tag{display:inline-block;font-size:12px;color:var(--muted);background:var(--code);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="crumb"><a href="/exam/">首页</a> › <a href="/exam/gaokao/">高考物理</a> › <a href="/exam/gaokao/bank/">考点题库</a> › 第 12 章</div>
+  <h1>第 12 章 · 光学</h1>
+  <div class="sub">第三部分 · 机械振动、波、光与热学 · 共 8 个小节</div>
+</div></header>
+<div class="wrap">
+<div class="card sec"><h3><span class="no">12.1</span>光的直线传播与几何光学基础</h3>
+<ul class="pts"><li>光的直线传播条件。</li><li>光速与介质。</li><li>光的反射定律。</li><li>平面镜成像。</li><li>光路的可逆性。</li><li>光线、像与物的位置关系。</li><li>球面镜的基础成像认识。</li><li>几何光路图的绘制。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">12.2</span>折射定律与全反射</h3>
+<ul class="pts"><li>光的折射。</li><li>折射率。</li><li>折射定律。</li><li>入射角、折射角与折射率的关系。</li><li>光从光疏介质进入光密介质。</li><li>光从光密介质进入光疏介质。</li><li>全反射与临界角。</li><li>光纤导光的基本原理。</li><li>平行玻璃砖的光路。</li><li>棱镜中的光路分析。</li><li>折射率与光速、波长的关系。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">12.3</span>透镜与成像</h3>
+<ul class="pts"><li>凸透镜与凹透镜。</li><li>透镜的会聚与发散作用。</li><li>物距、像距及焦距。</li><li>实像与虚像。</li><li>放大、缩小及等大成像。</li><li>透镜成像规律。</li><li>多透镜组合的基本光路。</li><li>透镜组合与成像位置。</li><li>光线经过透镜后的方向判断。</li><li>几何光路与实际成像条件。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">12.4</span>光的色散</h3>
+<ul class="pts"><li>白光的色散。</li><li>棱镜色散。</li><li>不同波长光的折射率差异。</li><li>介质对不同颜色光的传播影响。</li><li>彩虹及光学仪器中的色散现象。</li><li>颜色、频率和波长之间的关系。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">12.5</span>光的干涉</h3>
+<ul class="pts"><li>光的波动性。</li><li>相干光的条件。</li><li>杨氏双缝干涉。</li><li>光程差与相位差。</li><li>明纹、暗纹条件。</li><li>条纹间距与波长、双缝间距、屏距的关系。</li><li>波长变化引起的条纹变化。</li><li>双缝间距或屏距变化引起的条纹变化。</li><li>插入介质后的光程变化。</li><li>干涉图样的移动与条纹间距比较。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">12.6</span>光的衍射</h3>
+<ul class="pts"><li>光的衍射现象。</li><li>衍射明显的条件。</li><li>单缝衍射的基本图样。</li><li>中央亮纹的特点。</li><li>缝宽与衍射图样的关系。</li><li>波长与衍射范围的关系。</li><li>衍射与直线传播近似之间的关系。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">12.7</span>光的偏振</h3>
+<ul class="pts"><li>偏振现象。</li><li>横波与偏振的关系。</li><li>自然光与偏振光。</li><li>偏振片的作用。</li><li>偏振在光学仪器和实际生活中的应用。</li></ul>
+</div>
+<div class="card sec"><h3><span class="no">12.8</span>光学综合题</h3>
+<ul class="pts"><li>折射与几何关系结合。</li><li>全反射与几何路径。</li><li>棱镜色散与折射率。</li><li>双缝干涉与波长测量。</li><li>光的干涉与介质变化。</li><li>几何光学与实际仪器。</li><li>多过程光路及多次折射。</li></ul>
+</div>
+<h2>本章题目（0）</h2><div class="empty">本章题目整理中 —— 考点框架已就绪，题目将按上方小节逐条编码录入。</div>
+<div class="pager"><a href="ch11.html"><small>← 上一章</small>第 11 章 机械振动与机械波</a><a class="next" href="ch13.html"><small>下一章 →</small>第 13 章 热学与热力学</a></div>
+
+<footer class="ft">IlluPhy · 高中物理考点题库 · 18 章体系 · 页面为纯静态 HTML</footer>
+</div>
+</body>
+</html>
