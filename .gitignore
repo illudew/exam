@@ -3,3 +3,6 @@
 *.log
 .env*
 .uploads/
+
+# 本地 skill
+.trae/
